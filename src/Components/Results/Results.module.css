@@ -1,0 +1,15 @@
+.Results {
+    padding-top: 1rem;
+    background-color: white;
+    border: 1px #bdbdbd solid;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #757575;
+    margin: 0;
+    margin-left: 1rem;
+    max-height: 90%;
+
+}
+

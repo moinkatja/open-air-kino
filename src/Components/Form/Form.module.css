@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+ 
+}
+
+.MainForm {
+    background-color: white;
+    margin: 0 auto;
+    padding-left: 20px;
+    width: 90%;
+    min-width: 750px;
+    height: 90%;
+    align-items: center;
+    align-self: center;
+    opacity: 0.9;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    grid-template-columns: 1fr 1.5fr;
+    z-index: 1;
+
+}
+
+h1 {
+    margin-left: 1rem;
+    text-align: left;
+    color: #009688;
+    font-size: 1.8rem;
+    margin-right: 1rem;
+    font-weight: normal;
+    margin-bottom: 0;
+    z-index: 2;
+    font-family: 'Josefin Sans', sans-serif;
+    min-width: 350px;
+   
+}
+
+select {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    width: 300px;
+    font-size: 1rem;
+    height: 45px;
+    background-color: #52dfd2;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgb(175, 173, 173);
+    box-shadow: 0px 1px 5px 0px #3f3e3e;
+    z-index: 2;
+
+}
+
+select option {
+    color: rgb(58, 58, 58); 
+}
+
+.Logo {
+ width: 40px;
+ margin-right: 1rem;
+float: left;
+margin-top: -8px;
+}
+

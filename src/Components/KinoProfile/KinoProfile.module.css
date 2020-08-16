@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.KinoProfile {
+    padding-top: 1rem;
+    background-color: white;
+    border: 1px #bdbdbd solid;
+    height: 90%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #757575;
+    margin: 0;
+    margin-left: 1rem;
+    margin-right: 2.2rem;
+    min-width: 300px;
+
+}

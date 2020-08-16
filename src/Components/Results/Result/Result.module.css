@@ -1,0 +1,30 @@
+.ResultItem {
+    padding: 5px;
+    border: 1px dotted grey;
+    display: flex;
+    width: 80%;
+    margin: 5px auto;
+    justify-content: center;
+    background-color: #70e7dd;
+    opacity: 0.9;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+.KinoThumbnail {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 2rem;
+    align-self: center;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: .8rem;
+}
