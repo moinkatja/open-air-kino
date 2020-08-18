@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.KinoProfile {
+.CinemaProfile {
     padding-top: 1rem;
     background-color: white;
     border: 1px #bdbdbd solid;
@@ -14,4 +14,8 @@
     margin-right: 2.2rem;
     min-width: 300px;
 
+}
+
+.CinemaPicture {
+    width: 400px;
 }

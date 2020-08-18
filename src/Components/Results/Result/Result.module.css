@@ -9,9 +9,8 @@
     opacity: 0.9;
     border-radius: 10px;
     cursor: pointer;
+    height: 80%;
 }
-
-
 
 .KinoThumbnail {
     border-radius: 50%;
@@ -27,4 +26,8 @@ h2 {
 
 h3 {
     font-size: .8rem;
+}
+
+button {
+    z-index: 90;
 }
