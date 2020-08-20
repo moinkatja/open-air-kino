@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-
 }
 
 .App {
@@ -65,12 +64,12 @@ p {
  font-size: 1rem;
 }
 
-.activeResult {
+.activeResultButton {
   padding: 15px;
   width: 100%;
   height: 100%;
   margin: 0;
-  border: 2px solid #70e7dd;
+  border: 1px solid #70e7dd;
   width: 80%;
   margin: 5px auto;
   justify-content: center;
@@ -98,9 +97,28 @@ p {
   cursor: pointer;
   height: 80%;
   text-align: center;
+  color: rgb(37, 43, 43);
+  transition: 0.3s ease-in-out;
 }
 
 .ResultButton:hover {
   background-color: teal;
   color: white;
+}
+
+
+.KinoThumbnail {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  float: left;
+  filter: grayscale();
+}
+
+.activeKinoThumbnail {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  float: left;
+
 }
