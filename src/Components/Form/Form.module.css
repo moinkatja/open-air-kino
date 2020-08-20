@@ -1,9 +1,8 @@
 select {
     margin-left: 1rem;
-    margin-top: 1rem;
     width: 300px;
     font-size: 1rem;
-    height: 45px;
+    height: 3rem;
     background-color: #52dfd2;
     text-align: center;
     border-radius: 10px;
@@ -11,7 +10,6 @@ select {
     box-shadow: 0px 1px 5px 0px #3f3e3e;
     z-index: 2;
     cursor: pointer;
-
 }
 
 select option {
@@ -24,7 +22,7 @@ select option {
     margin-top: 1rem;
     width: 100px;
     font-size: 1rem;
-    height: 45px;
+    height: 3rem;
     background-color: #52dfd2;
     text-align: center;
     border-radius: 10px;
@@ -39,4 +37,34 @@ select option {
     background-color: teal;
     color: white;
    
+}
+
+@media (max-width: 900px) {
+    select {
+        width: 200px;
+        height: 2rem;
+    }
+    .SubmitBtn {
+        height: 2rem;
+    }
+}
+
+
+@media (max-width: 800px) {
+    select {
+        margin-left: 0;
+        background-color: white;
+    }
+}
+
+@media (max-width: 350px) {
+    select {
+        width: 180px;
+        font-size: .8rem;
+    }
+
+    .SubmitBtn {
+        height: 2rem;
+        font-size: .8rem;
+    }
 }

@@ -18,7 +18,7 @@ class App extends Component {
         { id: "0", name: "Cinema1", city: "Hamburg", street: "Ringstr. 1", tel: 2812121, pic: kino1 },
         { id: "1", name: "Kino2", city: "Hamburg", street: "Ringstr. 5", tel: 3232321, pic: kino2 },
         { id: "2", name: "TestKino", city: "Hamburg", street: "Helloring. 56", tel: 22232321, pic: kino3 },
-        { id: "3", name: "HelloKino", city: "Hamburg", street: "Abcstrasse 16", tel: 12223434, pic: kino2 }
+        { id: "3", name: "HelloKino", city: "Hamburg", street: "Abcstrasse 16", tel: 1222343, pic: kino2 }
       ],
       selectedCinema: null,
     };

@@ -2,6 +2,7 @@ import React from 'react';
 import '../../CinemaProfile/CinemaProfile';
 import { BrowserRouter, NavLink } from "react-router-dom";
 
+
 function Result(props) {
 
     return (
@@ -13,9 +14,9 @@ function Result(props) {
                     id={props.id}
                     onClick={props.clicked} >
                     <img
-                         className={props.id === props.activeCinema ? ' activeKinoThumbnail' : 'KinoThumbnail'}
+                        className={props.id === props.activeCinema ? ' activeKinoThumbnail' : 'KinoThumbnail'}
                         src={props.pic} alt="Kino Thumbnail" />
-                    <p><strong>{props.name}</strong></p> <p> {props.city}, Tel: {props.tel} </p>
+                    <h4><strong>{props.name}</strong></h4> <p> {props.city}, Tel: {props.tel} </p>
                 </div>
             </NavLink>
         </BrowserRouter>

@@ -11,27 +11,27 @@ class Results extends Component {
         this.changeActiveCinema = this.changeActiveCinema.bind(this);
     }
 
-     changeActiveCinema(e) {
+    changeActiveCinema(e) {
         const buttonId = e.target.id;
         const cinemaId = buttonId[0];
         this.props.cinemaToSelect(cinemaId);
-    } 
+    }
 
     render() {
         return (
             <div className={classes.Results}>
                 {
                     this.props.cinemas.map((cinema) =>
-                                <Result
-                                    name={cinema.name}
-                                    tel={cinema.tel}
-                                    pic={cinema.pic}
-                                    city={cinema.city}
-                                    id={cinema.id}
-                                    key={cinema.id}
-                                    clicked={this.changeActiveCinema} 
-                                    activeCinema={this.props.activeCinema}
-                                />
+                        <Result
+                            name={cinema.name}
+                            tel={cinema.tel}
+                            pic={cinema.pic}
+                            city={cinema.city}
+                            id={cinema.id}
+                            key={cinema.id}
+                            clicked={this.changeActiveCinema}
+                            activeCinema={this.props.activeCinema}
+                        />
                     )
                 }
             </div>
