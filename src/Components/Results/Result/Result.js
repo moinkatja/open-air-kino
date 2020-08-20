@@ -1,20 +1,25 @@
 import React from 'react';
 import classes from "./Result.module.css";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import '../../CinemaProfile/CinemaProfile';
+import { BrowserRouter, NavLink } from "react-router-dom";
 
 function Result(props) {
-
+    
     return (
-   
-            <button className={classes.ResultItem} id={props.id} onClick={props.clicked} >
-                <img className={classes.KinoThumbnail} src={props.pic} alt="Kino Thumbnail" />
-                <div  >
-                    <h2>{props.name}</h2>
-                    <h3> {props.city}</h3>
-                    <h3> Tel: {props.tel}</h3>
+        <BrowserRouter>
+            <NavLink to={
+                { pathname: `${props.id}` }}>
+                <div
+                    className={props.id === props.activeCinema ? ' activeResult' : 'ResultButton'}
+                    id={props.id}
+                    onClick={props.clicked} >
+                    <img
+                        className={classes.KinoThumbnail}
+                        src={props.pic} alt="Kino Thumbnail" />
+                    <p><strong>{props.name}</strong></p> <p> {props.city}, Tel: {props.tel} </p>
                 </div>
-            </button>
-      
+            </NavLink>
+        </BrowserRouter>
     )
 }
 

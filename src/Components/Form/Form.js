@@ -1,5 +1,5 @@
 import React from 'react';
-import  './Form.module.css';
+import classes from './Form.module.css';
 
 const Form = props => {
     return (
@@ -10,7 +10,7 @@ const Form = props => {
                 <option>Berlin</option>
                 <option >Hamburg</option>
             </select>
-            <button>Submit</button>
+            <button className={classes.SubmitBtn}>Submit</button>
         </form>
 
     )

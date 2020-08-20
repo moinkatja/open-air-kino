@@ -19,7 +19,7 @@ select option {
 }
 
 
-button {
+.SubmitBtn {
     margin-left: 1rem;
     margin-top: 1rem;
     width: 100px;
@@ -35,7 +35,7 @@ button {
     transition: 0.3s ease-in-out;
 }
 
-button:hover {
+.SubmitBtn:hover {
     background-color: teal;
     color: white;
    

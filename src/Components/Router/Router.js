@@ -5,10 +5,11 @@ import App from "../../App";
 import CinemaProfile from "../CinemaProfile/CinemaProfile";
 
 const Router = () => (
+  
   <BrowserRouter>
     <Switch>
       <Route path="/" component={App} exact />
-      <Route path="cinema/:id" component={CinemaProfile} />
+      <Route path="id"  component={CinemaProfile} />
     </Switch>
   </BrowserRouter>
 );
