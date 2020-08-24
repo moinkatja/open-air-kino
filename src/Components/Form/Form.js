@@ -5,7 +5,7 @@ const Form = props => {
     return (
 
 
-        <form onSubmit={props.getCinemas}>
+        <form onSubmit="">
             <select>
                 <option>Berlin</option>
                 <option >Hamburg</option>

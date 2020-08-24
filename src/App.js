@@ -7,36 +7,56 @@ import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import kino1 from "../src/img/kino1.jpeg";
 import kino2 from "../src/img/kino2.jpg";
 import kino3 from "../src/img/kino3.jpg";
-
+import config from "./config";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.selectCinema = this.selectCinema.bind(this);
     this.state = {
-      cinemas: [
-        { id: "0", name: "Cinema1", city: "Hamburg", street: "Ringstr. 1", tel: 2812121, pic: kino1 },
-        { id: "1", name: "Kino2", city: "Hamburg", street: "Ringstr. 5", tel: 3232321, pic: kino2 },
-        { id: "2", name: "TestKino", city: "Hamburg", street: "Helloring. 56", tel: 22232321, pic: kino3 },
-        { id: "3", name: "HelloKino", city: "Hamburg", street: "Abcstrasse 16", tel: 1222343, pic: kino2 }
-      ],
+      cinemas: [],
       selectedCinema: null,
     };
   }
 
+  componentDidMount() {
 
-  getCinemas = (e) => {
-    e.preventDefault();
-    this.setState({
-      cinemas: [
-        { id: "0", name: "Cinema1", city: "Hamburg", street: "Ringstr. 1", tel: 2812121, pic: kino1 },
-        { id: "1", name: "Kino2", city: "Hamburg", street: "Ringstr. 5", tel: 3232321, pic: kino2 },
-        { id: "2", name: "TestKino", city: "Hamburg", street: "Helloring. 56", tel: 22232321, pic: kino3 },
-        { id: "3", name: "HelloKino", city: "Hamburg", street: "Abcstrasse 16", tel: 12223434, pic: kino2 }
-      ],
-      selectedCinema: null,
+    const options = {
+      method: 'GET',
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+      }
+    }
+    fetch(`${config.API_ENDPOINT}/cinemas`, options)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Something went wrong, please try again later.');
+      }
+      return res;
     })
-  }
+    .then(res => res.json())
+    .then(data => {
+      this.setState({
+        cinemas: data,
+        error: null
+      });
+    })
+    .catch(err => {
+      this.setState({
+        error: err.message
+      });
+    });
+
+
+/*     const cinemaToShow = this.state.cinemas[0].id|| null;
+    this.setState({
+      ...this.state,
+      selectedCinema: cinemaToShow
+    });  
+ */
+
+ }
 
   selectCinema(cinemaId) {
     if (cinemaId) {
@@ -47,21 +67,23 @@ class App extends Component {
     }
   }
 
-
   render() {
+
     let cinemaToSelect;
+
     if (this.state.selectedCinema) {
       const filteredCinemas = this.state.cinemas.filter((cinema) => cinema.id === this.state.selectedCinema);
       if (filteredCinemas.length > 0) {
         cinemaToSelect = filteredCinemas[0];
       }
     }
+
     return (
 
       <div className="App">
         <div className="MainForm">
           <Title />
-          <Form getCinemas={this.getCinemas} />
+          <Form />
           <Results
             cinemas={this.state.cinemas}
             activeCinema={this.state.selectedCinema}
@@ -72,22 +94,15 @@ class App extends Component {
                 name={cinemaToSelect.name}
                 city={cinemaToSelect.city}
                 tel={cinemaToSelect.tel}
-                pic={cinemaToSelect.pic}
                 street={cinemaToSelect.street}
-              /> : null
+              /> : <p>Welcome to OpenAir Kino App</p>
           }
         </div>
       </div>
     )
   }
 
-  componentDidMount() {
-    const cinemaToShow = this.state.cinemas[0].id || null;
-    this.setState({
-      ...this.state,
-      selectedCinema: cinemaToShow
-    });
-  }
+
 
 }
 

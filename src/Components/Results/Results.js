@@ -25,7 +25,6 @@ class Results extends Component {
                         <Result
                             name={cinema.name}
                             tel={cinema.tel}
-                            pic={cinema.pic}
                             city={cinema.city}
                             id={cinema.id}
                             key={cinema.id}
