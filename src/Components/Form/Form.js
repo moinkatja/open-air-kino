@@ -1,23 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Form.module.css';
 
-const Form = props => {
-
-
-
-    return (
-
-
-        <form onSubmit={props.getCity}>
-            <select name="city">
-                <option>Berlin</option>
-                <option >Hamburg</option>
+class Form extends Component {
+    render() {
+        return (
+            <form method="post">
+            <select onChange={this.props.getCity} type="submit" name="city">
+                <option  value="">Show all the cities</option>
+                <option  value="Berlin">Berlin</option>
+                <option  value="Hamburg" >Hamburg</option>
             </select>
-            <button className={classes.SubmitBtn}>Submit</button>
         </form>
-
-    )
+        )
+    }
 }
 
 export default Form;
-

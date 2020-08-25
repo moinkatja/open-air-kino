@@ -66,7 +66,7 @@ class App extends Component {
 
   getCity = async (e) => {
     e.preventDefault();
-    const city = e.target.elements.city.value;
+    const city = e.target.value;
     fetch(`${config.API_ENDPOINT}/search?city=${city}`)
     .then(res => res.json())
     .then(data => {
@@ -110,7 +110,7 @@ class App extends Component {
                 city={cinemaToSelect.city}
                 tel={cinemaToSelect.tel}
                 street={cinemaToSelect.street}
-              /> : <p>Welcome to OpenAir Kino App</p>
+              /> : <h1 className="Welcome">Welcome to OpenAir Kino App</h1>
           }
         </div>
       </div>

@@ -16,39 +16,12 @@ select option {
     color: rgb(58, 58, 58); 
 }
 
-
-.SubmitBtn {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    width: 100px;
-    font-size: 1rem;
-    height: 3rem;
-    background-color: #52dfd2;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid rgb(175, 173, 173);
-    box-shadow: 0px 1px 5px 0px #3f3e3e;
-    z-index: 2;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.SubmitBtn:hover {
-    background-color: teal;
-    color: white;
-   
-}
-
 @media (max-width: 900px) {
     select {
         width: 200px;
         height: 2rem;
     }
-    .SubmitBtn {
-        height: 2rem;
-    }
 }
-
 
 @media (max-width: 800px) {
     select {
@@ -60,11 +33,6 @@ select option {
 @media (max-width: 350px) {
     select {
         width: 180px;
-        font-size: .8rem;
-    }
-
-    .SubmitBtn {
-        height: 2rem;
         font-size: .8rem;
     }
 }
