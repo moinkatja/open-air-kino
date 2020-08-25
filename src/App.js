@@ -4,9 +4,6 @@ import Title from "../src/Components/Title/Title";
 import Form from "../src/Components/Form/Form";
 import Results from "../src/Components/Results/Results";
 import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
-import kino1 from "../src/img/kino1.jpeg";
-import kino2 from "../src/img/kino2.jpg";
-import kino3 from "../src/img/kino3.jpg";
 import config from "./config";
 
 class App extends Component {
@@ -67,6 +64,24 @@ class App extends Component {
     }
   }
 
+  getCity = async (e) => {
+    e.preventDefault();
+    const city = e.target.elements.city.value;
+    fetch(`${config.API_ENDPOINT}/search?city=${city}`)
+    .then(res => res.json())
+    .then(data => {
+      this.setState({
+        cinemas: data,
+        error: null
+      });
+    })
+    .catch(err => {
+      this.setState({
+        error: err.message
+      });
+    });
+  }
+
   render() {
 
     let cinemaToSelect;
@@ -83,7 +98,7 @@ class App extends Component {
       <div className="App">
         <div className="MainForm">
           <Title />
-          <Form />
+          <Form getCity={this.getCity} />
           <Results
             cinemas={this.state.cinemas}
             activeCinema={this.state.selectedCinema}
