@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Result from "./Result/Result";
 
-
 import classes from "./Results.module.css";
 
 class Results extends Component {
@@ -11,6 +10,7 @@ class Results extends Component {
         this.changeActiveCinema = this.changeActiveCinema.bind(this);
     }
 
+
     changeActiveCinema(e) {
         const buttonId = e.target.id;
         const cinemaId = buttonId[0];
@@ -18,6 +18,7 @@ class Results extends Component {
     }
 
     render() {
+       
         return (
             <div className={classes.Results}>
                 {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import "./App.css";
 import Title from "../src/Components/Title/Title";
-import Form from "../src/Components/Form/Form";
+import SearchForm from "./Components/SearchForm/SearchForm";
 import Results from "../src/Components/Results/Results";
 import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
+import Spinner from "./Components/Spinner/Spinner";
 import config from "./config";
 
 class App extends Component {
@@ -13,11 +14,13 @@ class App extends Component {
     this.state = {
       cinemas: [],
       selectedCinema: null,
+      loading: false,
+      error: null
     };
   }
 
   componentDidMount() {
-
+    this.setState({ ...this.state, loading: true });
     const options = {
       method: 'GET',
       headers: {
@@ -26,34 +29,36 @@ class App extends Component {
       }
     }
     fetch(`${config.API_ENDPOINT}/cinemas`, options)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('Something went wrong, please try again later.');
-      }
-      return res;
-    })
-    .then(res => res.json())
-    .then(data => {
-      this.setState({
-        cinemas: data,
-        error: null
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Something went wrong, please try again later.');
+        }
+        return res;
+      })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cinemas: data,
+          error: null,
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({
+          error: err.message,
+          loading: false
+        });
       });
-    })
-    .catch(err => {
-      this.setState({
-        error: err.message
-      });
-    });
 
 
-/*     const cinemaToShow = this.state.cinemas[0].id|| null;
-    this.setState({
-      ...this.state,
-      selectedCinema: cinemaToShow
-    });  
- */
+    /*     const cinemaToShow = this.state.cinemas[0].id|| null;
+        this.setState({
+          ...this.state,
+          selectedCinema: cinemaToShow
+        });  
+     */
 
- }
+  }
 
   selectCinema(cinemaId) {
     if (cinemaId) {
@@ -67,25 +72,27 @@ class App extends Component {
   getCity = async (e) => {
     e.preventDefault();
     const city = e.target.value;
+    this.setState({ ...this.state, loading: true });
     fetch(`${config.API_ENDPOINT}/search?city=${city}`)
-    .then(res => res.json())
-    .then(data => {
-      this.setState({
-        cinemas: data,
-        error: null
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cinemas: data,
+          error: null,
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({
+          error: err.message,
+          loading: false
+        });
       });
-    })
-    .catch(err => {
-      this.setState({
-        error: err.message
-      });
-    });
   }
 
   render() {
 
     let cinemaToSelect;
-
     if (this.state.selectedCinema) {
       const filteredCinemas = this.state.cinemas.filter((cinema) => cinema.id === this.state.selectedCinema);
       if (filteredCinemas.length > 0) {
@@ -93,25 +100,27 @@ class App extends Component {
       }
     }
 
-    return (
 
+
+    return (
       <div className="App">
         <div className="MainForm">
           <Title />
-          <Form getCity={this.getCity} />
-          <Results
+          <SearchForm getCity={this.getCity} />
+          {this.state.loading ? <Spinner /> : <Results
             cinemas={this.state.cinemas}
             activeCinema={this.state.selectedCinema}
             cinemaToSelect={this.selectCinema} />
-          {
-            cinemaToSelect ?
-              <CinemaProfile
-                name={cinemaToSelect.name}
-                city={cinemaToSelect.city}
-                tel={cinemaToSelect.tel}
-                street={cinemaToSelect.street}
-              /> : <h1 className="Welcome">Welcome to OpenAir Kino App</h1>
           }
+
+          {cinemaToSelect ?
+            <CinemaProfile
+              name={cinemaToSelect.name}
+              city={cinemaToSelect.city}
+              tel={cinemaToSelect.tel}
+              street={cinemaToSelect.street}
+            /> : <h1 className="Welcome">Welcome to OpenAir Kino App</h1>}
+
         </div>
       </div>
     )

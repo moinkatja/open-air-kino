@@ -2,7 +2,6 @@ import React from 'react';
 import '../../CinemaProfile/CinemaProfile';
 import { BrowserRouter, NavLink } from "react-router-dom";
 
-
 function Result(props) {
 
     return (
