@@ -13,72 +13,58 @@
   display: flex;
 }
 
-.Logo {
-  width: 40px;
-  margin-right: 1rem;
-  float: left;
-  margin-top: -8px;
-}
- 
 .MainForm {
   background-color: white;
   margin: 0 auto;
-  padding-left: 20px;
+  padding-left: 10px;
   width: 90%;
   min-width: 750px;
   height: 90%;
-  align-items: center;
+  align-items: start;
   align-self: center;
   opacity: 0.9;
   border-radius: 10px;
   display: grid;
   grid-template-rows: 10% 90%;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 50% 50%;
   z-index: 1;
 }
 
 h1 {
-  margin-left: 1rem;
-  text-align: left;
   color: #009688;
   font-size: 1.8rem;
   margin-right: 1rem;
   font-weight: normal;
-  margin-bottom: 0;
   z-index: 2;
   font-family: 'Josefin Sans', sans-serif;
   min-width: 300px;
 }
-
 
 p {
   font-size: 1rem;
 }
 
 .activeResultButton {
-  padding: 15px;
-  width: 80%;
+  padding: 5px;
+  width: 90%;
   height: 110px;
-  margin: 0;
   border: 1px solid #70e7dd;
-  margin: 5px auto;
-  justify-content: center;
+  margin: 5px auto; 
   background-color: teal;
   color: white;
   opacity: 0.9;
-  border-radius: 10px;
+  border-radius: 10px; 
   cursor: not-allowed;
-  text-align: center;
+  text-align: center; 
+  max-width: 600px;
 }
 
 .ResultButton {
-  padding: 15px;
-  width: 80%;
+  padding: 5px;
+  width: 90%;
   height: 110px;
-  margin: 0;
   border: 1px dotted grey;
   margin: 5px auto;
-  justify-content: center;
   background-color: #70e7dd;
   opacity: 0.9;
   border-radius: 10px;
@@ -86,6 +72,7 @@ p {
   text-align: center;
   color: rgb(37, 43, 43);
   transition: 0.3s ease-in-out;
+  max-width: 600px;
 }
 
 .ResultButton:hover {
@@ -109,25 +96,13 @@ p {
   float: left;
 }
 
-.Welcome {
-  margin-top: -1rem;
-  text-align: center;
-}
-
 @media (max-width: 1200px) {
-  
-  .MainForm {
-    grid-template-rows: 10% 90%;
-    grid-template-columns: 30% 70%;
-  }
-
   .ResultButton p{
-  
     display: none;
   } 
+
   .activeResultButton p {
     display: none;
-
   }
 
   .KinoThumbnail {
@@ -139,20 +114,14 @@ p {
     width: 60px;
     height: 60px;
   }
-
 }
 
-@media (max-width: 900px) {
-
-  h4 {
-    font-size: .8rem;
-  }
+@media (max-width: 1200px) {
 
   .MainForm {
-    width: 100%;
-    height: 100vh;
-    border-radius: 0;
+
     min-width: 450px;
+    grid-template-columns: 40% 60%;
   }
 
   .KinoThumbnail {
@@ -168,7 +137,14 @@ p {
 
 @media (max-width: 800px) {
 
+  .App {
+    background: white;
+  }
+
   .MainForm {
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding-left: 0;
@@ -200,11 +176,6 @@ p {
     font-size: .8rem;
   }
 
-  .Logo {
-   margin-left: 3rem;
-   margin-right: 0;
-  }
-
   .KinoThumbnail {
     width: 80px;
     height: 80px;
@@ -215,7 +186,6 @@ p {
     height: 80px;
   }
 
-  .App {
-    background: white;
-  }
+ 
+
 }

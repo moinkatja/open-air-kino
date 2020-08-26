@@ -6,6 +6,7 @@ import Results from "../src/Components/Results/Results";
 import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import Spinner from "./Components/Spinner/Spinner";
 import config from "./config";
+import WelcomePage from './Components/WelcomePage/WelcomePage';
 
 class App extends Component {
   constructor(props) {
@@ -100,8 +101,6 @@ class App extends Component {
       }
     }
 
-
-
     return (
       <div className="App">
         <div className="MainForm">
@@ -119,14 +118,13 @@ class App extends Component {
               city={cinemaToSelect.city}
               tel={cinemaToSelect.tel}
               street={cinemaToSelect.street}
-            /> : <h1 className="Welcome">Welcome to OpenAir Kino App</h1>}
+            /> : <WelcomePage/>
+          }
 
         </div>
       </div>
     )
   }
-
-
 
 }
 

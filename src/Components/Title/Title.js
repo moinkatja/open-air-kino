@@ -1,9 +1,13 @@
 import React from 'react';
 import logo from "../../img/logo.png";
+import classes from "./Title.module.css";
 
 function Title() {
     return (
-        <h1><img className="Logo" src={logo} alt="Logo" />OpenAir Kino </h1>
+        <header className={classes.Header}>
+            <img className={classes.Logo} src={logo} alt="Logo" />
+            <h1 className={classes.Title}>OpenAir Kino </h1>
+        </header>
     )
 }
 

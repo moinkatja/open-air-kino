@@ -1,6 +1,9 @@
+form {
+    margin-bottom: 2rem;
+}
+
 select {
-    margin-left: 1rem;
-    width: 300px;
+    width: 250px;
     font-size: 1rem;
     height: 3rem;
     background-color: #52dfd2;
@@ -17,21 +20,23 @@ select option {
     color: rgb(58, 58, 58); 
 }
 
-@media (max-width: 900px) {
+
+@media (max-width: 800px) {
+    form {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+     }
     select {
         width: 200px;
         height: 2rem;
-    }
-}
-
-@media (max-width: 800px) {
-    select {
         margin-left: 0;
         background-color: white;
     }
 }
 
 @media (max-width: 350px) {
+ 
     select {
         width: 180px;
         font-size: .8rem;

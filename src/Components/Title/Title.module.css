@@ -1,0 +1,30 @@
+.Header {
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    min-width: 350px;
+}
+
+.Logo {
+    width: 50px;
+    position: absolute;
+    margin-left: -150px;
+    margin-top: 1rem;
+    float: left;
+    padding: 5px;
+}
+
+.Title {
+    margin-top: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 800px) {
+    .Header {
+        width: 100%;
+    }
+
+    .Title {
+        margin-bottom: .5rem;
+    }
+}
