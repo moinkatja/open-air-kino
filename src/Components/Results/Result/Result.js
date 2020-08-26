@@ -9,12 +9,12 @@ function Result(props) {
             <NavLink to={
                 { pathname: `${props.id}` }}>
                 <div
-                    className={props.id === props.activeCinema ? "activeResultButton" : "ResultButton"}
+                    className={props.id === props.activeCinema ? "ActiveResultButton" : "ResultButton"}
                     id={props.id}
                     onClick={props.clicked} >
-                    {/* <img
-                        className={props.id === props.activeCinema ? ' activeKinoThumbnail' : 'KinoThumbnail'}
-                        src={props.pic} alt="Kino Thumbnail" /> */}
+                    <img
+                        className={props.id === props.activeCinema ? "ActiveKinoThumbnail" : "KinoThumbnail"}
+                        src={props.pic} alt="Kino Thumbnail" /> 
                     <h4><strong>{props.name}</strong></h4> <p> {props.city}, {props.street} </p>
                 </div>
             </NavLink>

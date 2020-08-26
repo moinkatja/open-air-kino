@@ -44,20 +44,6 @@ p {
   font-size: 1rem;
 }
 
-.activeResultButton {
-  padding: 5px;
-  width: 90%;
-  height: 110px;
-  border: 1px solid #70e7dd;
-  margin: 5px auto; 
-  background-color: teal;
-  color: white;
-  opacity: 0.9;
-  border-radius: 10px; 
-  cursor: not-allowed;
-  text-align: center; 
-  max-width: 600px;
-}
 
 .ResultButton {
   padding: 5px;
@@ -72,7 +58,22 @@ p {
   text-align: center;
   color: rgb(37, 43, 43);
   transition: 0.3s ease-in-out;
-  max-width: 600px;
+  max-width: 500px;
+}
+
+.ActiveResultButton {
+  padding: 5px;
+  width: 90%;
+  height: 110px;
+  border: 1px solid #70e7dd;
+  margin: 5px auto; 
+  background-color: teal;
+  color: white;
+  opacity: 0.9;
+  border-radius: 10px; 
+  cursor: not-allowed;
+  text-align: center; 
+  max-width: 500px;
 }
 
 .ResultButton:hover {
@@ -80,58 +81,39 @@ p {
   color: white;
 }
 
-
 .KinoThumbnail {
   border-radius: 50%;
   width: 80px;
   height: 80px;
   float: left;
   filter: grayscale();
+  margin-top: 10px;
+  margin-left: 3rem;
 }
 
-.activeKinoThumbnail {
+.ActiveKinoThumbnail {
   border-radius: 50%;
   width: 80px;
   height: 80px;
+  margin-top: 10px;
   float: left;
-}
+  margin-left: 3rem;
 
-@media (max-width: 1200px) {
-  .ResultButton p{
-    display: none;
-  } 
-
-  .activeResultButton p {
-    display: none;
-  }
-
-  .KinoThumbnail {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .activeKinoThumbnail {
-    width: 60px;
-    height: 60px;
-  }
 }
 
 @media (max-width: 1200px) {
 
   .MainForm {
-
     min-width: 450px;
     grid-template-columns: 40% 60%;
   }
 
-  .KinoThumbnail {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .activeKinoThumbnail {
-    width: 50px;
-    height: 50px;
+  .ResultButton p{
+    display: none;
+  } 
+
+  .ActiveResultButton p {
+    display: none;
   }
 }
 
@@ -170,22 +152,18 @@ p {
     font-size: .8rem;
   } 
 
-  .activeResultButton p {
+  .ActiveResultButton p {
     padding: 5px;
     display:block;
     font-size: .8rem;
   }
 
   .KinoThumbnail {
-    width: 80px;
-    height: 80px;
+   margin-left: 1rem;
   }
 
-  .activeKinoThumbnail {
-    width: 80px;
-    height: 80px;
+  .ActiveKinoThumbnail {
+    margin-left: 1rem;
   }
-
- 
 
 }

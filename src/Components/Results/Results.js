@@ -30,6 +30,7 @@ class Results extends Component {
                             city={cinema.city}
                             id={cinema.id}
                             key={cinema.id}
+                            pic={cinema.pic}
                             clicked={this.changeActiveCinema}
                             activeCinema={this.props.activeCinema}
                         />

@@ -118,6 +118,7 @@ class App extends Component {
               city={cinemaToSelect.city}
               tel={cinemaToSelect.tel}
               street={cinemaToSelect.street}
+              pic={cinemaToSelect.pic}
             /> : <WelcomePage/>
           }
 
