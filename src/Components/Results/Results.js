@@ -8,6 +8,20 @@ class Results extends Component {
     constructor(props) {
         super(props);
         this.changeActiveCinema = this.changeActiveCinema.bind(this);
+        this.addToFavorites = this.addToFavorites.bind(this);
+        this.state = {
+            favorites: [0],
+            //disabled: false
+        }
+    }
+
+    addToFavorites(fav) {
+        this.setState({
+            //disabled: true,
+            favorites: [...this.state.favorites, fav]
+        });
+        this.props.onAddFavorite(this.state.favorites);
+        console.log(this.state.favorites)
     }
 
 
@@ -18,7 +32,7 @@ class Results extends Component {
     }
 
     render() {
-       
+
         return (
             <div className={classes.Results}>
                 {
@@ -26,13 +40,15 @@ class Results extends Component {
                         <Result
                             name={cinema.name}
                             tel={cinema.tel}
-                            street = {cinema.street}
+                            street={cinema.street}
                             city={cinema.city}
                             id={cinema.id}
                             key={cinema.id}
                             pic={cinema.pic}
                             clicked={this.changeActiveCinema}
                             activeCinema={this.props.activeCinema}
+                            AddFavorite={this.addToFavorites}
+                            fav={cinema}
                         />
                     )
                 }
