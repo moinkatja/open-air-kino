@@ -13,20 +13,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.selectCinema = this.selectCinema.bind(this);
-    this.handleFavorites = this.handleFavorites.bind(this);
+    this.toggleFavorite = this.toggleFavorite.bind(this);
     this.state = {
       cinemas: [],
-      selectedCinema: null,
       favorites: [],
+      selectedCinema: null,
+      liked: false,
       loading: false,
-      error: null
+      error: null,
     };
   }
 
   componentDidMount() {
-  
+
     this.setState({ ...this.state, loading: true, });
-    
     const options = {
       method: 'GET',
       headers: {
@@ -34,9 +34,9 @@ class App extends Component {
         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
       }
     }
-   
+
     fetch(`${config.API_ENDPOINT}/cinemas`, options)
-    
+
       .then(res => {
         if (!res.ok) {
           throw new Error('Something went wrong, please try again later.');
@@ -51,7 +51,7 @@ class App extends Component {
           loading: false,
         });
       })
-    
+
       .catch(err => {
         this.setState({
           error: err.message,
@@ -59,18 +59,9 @@ class App extends Component {
         });
       });
 
-      
-   /*      const cinemaToShow = this.state.cinemas[0].id|| null;
-        this.setState({
-          ...this.state,
-          selectedCinema: cinemaToShow
-        });   */
-
-
   }
 
   selectCinema = (cinemaId) => {
-    //console.log(this.state.cinemas[0].id)
     if (cinemaId) {
       this.setState({
         ...this.state,
@@ -78,20 +69,24 @@ class App extends Component {
       });
     }
   }
+  
+  toggleFavorite = (id) => {
+     // this.setState({ favorites: favoritesArr})
+      if (this.state.favorites.includes(id) === false) {
+        this.setState({ favorites: [...this.state.favorites, id]})
+    }
+    else {          
+        this.setState({ favorites: this.state.favorites.filter(function(cinema) { 
+            return cinema !== id }) })
+    } 
+}
 
-  handleFavorites = (fav) => {
-    this.setState({
-      ...this.state, 
-      favorites: fav,
-      selectedCinema: ({...this.state.selectedCinema})
-    });
-  }
-
+  
   getCity = (e) => {
     e.preventDefault();
     const city = e.target.value;
     this.setState({
-      ...this.state, 
+      ...this.state,
       loading: true,
     });
     fetch(`${config.API_ENDPOINT}/search?city=${city}`)
@@ -109,35 +104,30 @@ class App extends Component {
           loading: false
         });
       });
-      //console.log(this.state.selectedCinema)
+    //console.log(this.state.selectedCinema)
   }
 
-
+  
   render() {
-
+    console.log(this.state.favorites)
     let cinemaToSelect;
     if (this.state.selectedCinema) {
-      const filteredCinemas = this.state.cinemas.filter((cinema) => cinema.id === this.state.selectedCinema);
-      if (filteredCinemas.length > 0) {
-        cinemaToSelect = filteredCinemas[0];
-      }
+      cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     }
 
     return (
       <div className="App">
         <div className="MainForm">
           <Title />
-          <SearchForm  getCity={this.getCity} />
+          <SearchForm getCity={this.getCity} />
           <Favorites favorites={this.state.favorites} />
           {this.state.loading ? <Spinner /> : <Results
             cinemas={this.state.cinemas}
             activeCinema={this.state.selectedCinema}
             cinemaToSelect={this.selectCinema}
-            favorites={this.state.favorites}
-            AddFavorite={this.props.AddToFavorites}
-            onAddFavorite={this.handleFavorites}
-            fav={this.props.cinema} 
-            />
+            favorites={this.toggleFavorite}
+            liked={this.state.favorites}
+          />
           }
           {cinemaToSelect ?
             <CinemaProfile

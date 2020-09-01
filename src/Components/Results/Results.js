@@ -8,22 +8,12 @@ class Results extends Component {
     constructor(props) {
         super(props);
         this.changeActiveCinema = this.changeActiveCinema.bind(this);
-        this.addToFavorites = this.addToFavorites.bind(this);
-        this.state = {
-            favorites: [0],
-            //disabled: false
-        }
+        this.addFavorite = this.addFavorite.bind(this);
     }
 
-    addToFavorites(fav) {
-        this.setState({
-            //disabled: true,
-            favorites: [...this.state.favorites, fav]
-        });
-        this.props.onAddFavorite(this.state.favorites);
-        console.log(this.state.favorites)
+    addFavorite(id) {
+        this.props.favorites(id);
     }
-
 
     changeActiveCinema(e) {
         const buttonId = e.target.id;
@@ -32,23 +22,22 @@ class Results extends Component {
     }
 
     render() {
-
         return (
             <div className={classes.Results}>
                 {
-                    this.props.cinemas.map((cinema) =>
+                    this.props.cinemas.map((cinema, id) =>
                         <Result
                             name={cinema.name}
                             tel={cinema.tel}
                             street={cinema.street}
                             city={cinema.city}
                             id={cinema.id}
-                            key={cinema.id}
+                            key={id}
                             pic={cinema.pic}
                             clicked={this.changeActiveCinema}
-                            activeCinema={this.props.activeCinema}
-                            AddFavorite={this.addToFavorites}
-                            fav={cinema}
+                            favorites={() => this.addFavorite(cinema.id)}
+                            activeCinema={this.props.activeCinema}                    
+                            liked={(this.props.liked).includes(cinema.id) ? "Unlike": "Like"}
                         />
                     )
                 }

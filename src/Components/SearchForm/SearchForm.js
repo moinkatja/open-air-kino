@@ -5,7 +5,7 @@ class SearchForm extends Component {
     render() {
         return (
             <form method="post">
-                <select onChange={this.props.getCity} type="submit" name="city">
+                <select onChange={this.props.getCity} name="city">
                     <option value="">Show all the cities</option>
                     <option value="Berlin">Berlin</option>
                     <option value="Hamburg" >Hamburg</option>
