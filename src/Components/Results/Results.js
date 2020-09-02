@@ -37,7 +37,7 @@ class Results extends Component {
                             clicked={this.changeActiveCinema}
                             favorites={() => this.addFavorite(cinema.id)}
                             activeCinema={this.props.activeCinema}                    
-                            liked={(this.props.liked).includes(cinema.id) ? "Unlike": "Like"}
+                            liked={(this.props.liked).includes(cinema.id) ? "Dislike": "Like"}
                         />
                     )
                 }

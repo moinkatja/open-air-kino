@@ -8,7 +8,7 @@ function Favorites(props) {
     return (
     
         <div className={classes.Favorites}>
-             Fav ( {text} )
+             Saved: <strong> {text} </strong> 
        
     </div>
     )

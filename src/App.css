@@ -48,8 +48,8 @@ p {
 .ResultButton {
   padding: 5px;
   width: 90%;
-  height: 110px;
-  border: 1px dotted grey;
+  height: 130px;
+  border: 15x dotted grey;
   margin: 5px auto;
   background-color: #70e7dd;
   opacity: 0.9;
@@ -64,7 +64,7 @@ p {
 .ActiveResultButton {
   padding: 5px;
   width: 90%;
-  height: 110px;
+  height: 130px;
   border: 1px solid #70e7dd;
   margin: 5px auto; 
   background-color: teal;
@@ -98,7 +98,31 @@ p {
   margin-top: 10px;
   float: left;
   margin-left: 3rem;
+}
 
+.ActiveLikeButton {
+  float: right;
+  margin-top: -3rem;
+  width: 50px;
+  background-color: white;
+  color: green;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: .4rem;
+}
+
+.NotActiveLikeButton {
+  float: right;
+  margin-top: -3rem;
+  width: 50px;
+  background-color: rgb(97, 25, 69);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: .4rem;
+  
 }
 
 @media (max-width: 1200px) {
@@ -114,6 +138,25 @@ p {
 
   .ActiveResultButton p {
     display: none;
+  }
+
+  .ActiveLikeButton {
+    float: none;
+
+  }
+
+  .NotActiveLikeButton {
+    float: none;
+    
+  }
+
+
+  .KinoThumbnail {
+    margin-left: 1rem;
+  }
+
+  .ActiveKinoThumbnail {
+    margin-left: 1rem;
   }
 }
 
@@ -131,7 +174,8 @@ p {
     flex-direction: column;
     padding-left: 0;
     min-width: 100%;
-    background-color: rgb(171, 231, 181);
+    background: url("../src/img/cinema.jpg");
+    /*background-color: rgb(171, 231, 181);*/
   }
 
   h1 {
@@ -159,11 +203,12 @@ p {
   }
 
   .KinoThumbnail {
-   margin-left: 1rem;
+   margin-left: 2rem;
   }
 
   .ActiveKinoThumbnail {
-    margin-left: 1rem;
+    margin-left: 2rem;
   }
+
 
 }

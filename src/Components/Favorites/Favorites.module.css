@@ -1,4 +1,25 @@
 .Favorites {
   align-self: center;
   justify-self: left;
+  align-items: center;
+}
+
+.Favorites strong {
+
+  color: rgb(5, 114, 90);
+  font-size: 1.3rem;
+
+}
+
+@media (max-width: 800px) {
+  .Favorites {
+    background-color: white;
+    border-radius: 5px;
+    width: 200px;
+padding-top: .4rem;
+padding-bottom: .4rem;
+    opacity: 0.8;
+  
+  }
+
 }
