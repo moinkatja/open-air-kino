@@ -5,9 +5,9 @@ import SearchForm from "./Components/SearchForm/SearchForm";
 import Results from "../src/Components/Results/Results";
 import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import Spinner from "./Components/Spinner/Spinner";
-import config from "./config";
 import WelcomePage from './Components/WelcomePage/WelcomePage';
 import Favorites from './Components/Favorites/Favorites';
+import { getCinemas } from "./getCinemas";
 
 class App extends Component {
   constructor(props) {
@@ -26,31 +26,19 @@ class App extends Component {
 
   componentDidMount() {
 
-    this.setState({ ...this.state, loading: true, });
-    const options = {
-      method: 'GET',
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-      }
-    }
+    const city="";
 
-    fetch(`${config.API_ENDPOINT}/cinemas`, options)
+    this.setState({
+      loading: true,
+    });
 
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Something went wrong, please try again later.');
-        }
-        return res;
-      })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          cinemas: data,
-          error: null,
-          loading: false,
-        });
-      })
+    getCinemas(city).then(data => {
+      this.setState({
+        cinemas: data,
+        error: null,
+        loading: false,
+      });
+    })
 
       .catch(err => {
         this.setState({
@@ -58,7 +46,6 @@ class App extends Component {
           loading: false
         });
       });
-
   }
 
   selectCinema = (cinemaId) => {
@@ -69,28 +56,27 @@ class App extends Component {
       });
     }
   }
-  
-  toggleFavorite = (id) => {
-     // this.setState({ favorites: favoritesArr})
-      if (this.state.favorites.includes(id) === false) {
-        this.setState({ favorites: [...this.state.favorites, id]})
-    }
-    else {          
-        this.setState({ favorites: this.state.favorites.filter(function(cinema) { 
-            return cinema !== id }) })
-    } 
-}
 
-  
+  toggleFavorite = (id) => {
+    if (this.state.favorites.includes(id) === false) {
+      this.setState({ favorites: [...this.state.favorites, id] })
+    }
+    else {
+      this.setState({
+        favorites: this.state.favorites.filter(function (cinema) {
+          return cinema !== id
+        })
+      })
+    }
+  }
+
   getCity = (e) => {
     e.preventDefault();
     const city = e.target.value;
-    this.setState({
-      ...this.state,
+    this.setState({  
       loading: true,
     });
-    fetch(`${config.API_ENDPOINT}/search?city=${city}`)
-      .then(res => res.json())
+    getCinemas(city)
       .then(data => {
         this.setState({
           cinemas: data,
@@ -107,9 +93,9 @@ class App extends Component {
     //console.log(this.state.selectedCinema)
   }
 
-  
+
   render() {
-    console.log(this.state.favorites)
+    //console.log(this.state.favorites)
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);

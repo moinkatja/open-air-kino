@@ -48,7 +48,7 @@ p {
 .ResultButton {
   padding: 5px;
   width: 90%;
-  height: 130px;
+  height: 110px;
   border: 15x dotted grey;
   margin: 5px auto;
   background-color: #70e7dd;
@@ -64,7 +64,7 @@ p {
 .ActiveResultButton {
   padding: 5px;
   width: 90%;
-  height: 130px;
+  height: 110px;
   border: 1px solid #70e7dd;
   margin: 5px auto; 
   background-color: teal;
@@ -210,5 +210,38 @@ p {
     margin-left: 2rem;
   }
 
+  .ActiveLikeButton {
+    float: right;
+
+  }
+
+  .NotActiveLikeButton {
+    float: right;
+    
+  }
+
+
+}
+
+
+@media (max-width: 400px) {
+.ResultButton p{
+
+  display: none;
+
+} 
+
+.ActiveResultButton p {
+  display: none;
+}
+.ActiveLikeButton {
+  float: none;
+
+}
+
+.NotActiveLikeButton {
+  float: none;
+  
+}
 
 }

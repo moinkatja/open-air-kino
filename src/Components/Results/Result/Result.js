@@ -9,7 +9,7 @@ class Result extends Component {
         return (
             <BrowserRouter>
                 <NavLink to={
-                    { pathname: `${this.props.id}` }}>
+                    { pathname: `/cinemas/${this.props.id}` }}>
                     <div
                         className={this.props.id === this.props.activeCinema ? "ActiveResultButton" : "ResultButton"}
                         id={this.props.id}
