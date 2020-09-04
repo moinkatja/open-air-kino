@@ -2,6 +2,7 @@
   align-self: center;
   justify-self: left;
   align-items: center;
+  z-index: 90;
 }
 
 .Favorites strong {
@@ -11,14 +12,21 @@
 
 }
 
+.FavMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 90;
+}
+
 @media (max-width: 800px) {
   .Favorites {
-    background-color: white;
+   
     border-radius: 5px;
     width: 200px;
 padding-top: .4rem;
 padding-bottom: .4rem;
-    opacity: 0.8;
+
   
   }
 

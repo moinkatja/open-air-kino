@@ -16,6 +16,7 @@ class App extends Component {
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.state = {
       cinemas: [],
+      cinemasInitial: [],
       favorites: [],
       selectedCinema: null,
       liked: false,
@@ -25,36 +26,57 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    const city="";
-
+    const city = " ";
     this.setState({
       loading: true,
     });
 
-    getCinemas(city).then(data => {
-      this.setState({
-        cinemas: data,
-        error: null,
-        loading: false,
-      });
-    })
+    getCinemas(city)
+      .then(data => {
+        this.setState({
+          cinemas: data,
+          cinemasInitial: data,
+          error: null,
+          loading: false,
+        });
+      })
 
       .catch(err => {
         this.setState({
+          //cinemas: null,
           error: err.message,
           loading: false
         });
       });
+
+
+    //this.baseState = this.state.cinemas;
+
   }
 
   selectCinema = (cinemaId) => {
     if (cinemaId) {
       this.setState({
-        ...this.state,
+        //...this.state,
         selectedCinema: cinemaId
       });
     }
+  }
+
+  showFavorites = (cinemaId) => {
+
+    const favoritesArray = [];
+    for (let i = 0; i < this.state.favorites.length; i++) {
+      favoritesArray.push(this.state.cinemasInitial.find((cinema) => cinema.id === this.state.favorites[i]));
+    }
+
+    if (cinemaId) {
+      this.setState({
+        cinemas: favoritesArray,
+        // selectedCinema: cinemaId
+      });
+    }
+
   }
 
   toggleFavorite = (id) => {
@@ -68,12 +90,13 @@ class App extends Component {
         })
       })
     }
+    this.baseState = this.state.favorites;
   }
 
   getCity = (e) => {
     e.preventDefault();
     const city = e.target.value;
-    this.setState({  
+    this.setState({
       loading: true,
     });
     getCinemas(city)
@@ -90,31 +113,39 @@ class App extends Component {
           loading: false
         });
       });
-    //console.log(this.state.selectedCinema)
+
   }
 
 
   render() {
-    //console.log(this.state.favorites)
+  
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     }
+   //console.log(cinemaToSelect)
 
     return (
       <div className="App">
         <div className="MainForm">
           <Title />
           <SearchForm getCity={this.getCity} />
-          <Favorites favorites={this.state.favorites} />
-          {this.state.loading ? <Spinner /> : <Results
-            cinemas={this.state.cinemas}
-            activeCinema={this.state.selectedCinema}
-            cinemaToSelect={this.selectCinema}
-            favorites={this.toggleFavorite}
-            liked={this.state.favorites}
+          <Favorites
+            favorites={this.state.favorites}
+            selectedCinema={this.selectCinema}
+            cinemas={this.showFavorites}
           />
+
+          {this.state.loading ? <Spinner /> :
+            <Results
+              cinemas={this.state.cinemas}
+              activeCinema={this.state.selectedCinema}
+              cinemaToSelect={this.selectCinema}
+              favorites={this.toggleFavorite}
+              liked={this.state.favorites}
+            />
           }
+
           {cinemaToSelect ?
             <CinemaProfile
               id={cinemaToSelect.id}

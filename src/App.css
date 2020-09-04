@@ -132,14 +132,14 @@ p {
     grid-template-columns: 40% 50% 10%;
   }
 
-  .ResultButton p{
+   .ResultButton p{
     display: none;
   } 
 
   .ActiveResultButton p {
     display: none;
   }
-
+ 
   .ActiveLikeButton {
     float: none;
 
@@ -224,7 +224,7 @@ p {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
 .ResultButton p{
 
   display: none;

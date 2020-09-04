@@ -1,3 +1,4 @@
+ 
  function getCinemas (city) {
  
     const proxyUrl = "https://cors-anywhere.herokuapp.com/";

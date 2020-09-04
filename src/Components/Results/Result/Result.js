@@ -3,9 +3,9 @@ import '../../CinemaProfile/CinemaProfile';
 import { BrowserRouter, NavLink } from "react-router-dom";
 
 class Result extends Component {
-    
+
     render() {
-  console.log(this.props.liked)
+        //console.log(this.props.liked)
         return (
             <BrowserRouter>
                 <NavLink to={
@@ -19,7 +19,7 @@ class Result extends Component {
                             src={this.props.pic} alt="Kino Thumbnail" />
                         <h4><strong>{this.props.name}</strong></h4> <p> {this.props.city}, {this.props.street} </p>
 
-                        <button className={this.props.liked === "Like" ?  "ActiveLikeButton" : "NotActiveLikeButton"} key={this.props.id}
+                        <button className={this.props.liked === "Like" ? "ActiveLikeButton" : "NotActiveLikeButton"} key={this.props.id}
                             onClick={this.props.favorites}
                         >  {this.props.liked}</button>
                     </div>

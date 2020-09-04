@@ -3,6 +3,7 @@ import Result from "./Result/Result";
 
 import classes from "./Results.module.css";
 
+
 class Results extends Component {
 
     constructor(props) {
@@ -11,8 +12,8 @@ class Results extends Component {
         this.addFavorite = this.addFavorite.bind(this);
     }
 
-    addFavorite(id) {
-        this.props.favorites(id);
+    addFavorite(cinemaId) {
+        this.props.favorites(cinemaId);
     }
 
     changeActiveCinema(e) {
@@ -36,8 +37,8 @@ class Results extends Component {
                             pic={cinema.pic}
                             clicked={this.changeActiveCinema}
                             favorites={() => this.addFavorite(cinema.id)}
-                            activeCinema={this.props.activeCinema}                    
-                            liked={(this.props.liked).includes(cinema.id) ? "Dislike": "Like"}
+                            activeCinema={this.props.activeCinema}
+                            liked={(this.props.liked).includes(cinema.id) ? "Dislike" : "Like"}
                         />
                     )
                 }
