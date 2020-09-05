@@ -7,6 +7,7 @@ import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import Spinner from "./Components/Spinner/Spinner";
 import WelcomePage from './Components/WelcomePage/WelcomePage';
 import Favorites from './Components/Favorites/Favorites';
+import Footer from "./Components/Footer/Footer"
 import { getCinemas } from "./getCinemas";
 
 class App extends Component {
@@ -48,7 +49,6 @@ class App extends Component {
           loading: false
         });
       });
-
 
     //this.baseState = this.state.cinemas;
 
@@ -113,7 +113,6 @@ class App extends Component {
           loading: false
         });
       });
-
   }
 
 
@@ -123,13 +122,12 @@ class App extends Component {
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     }
-   //console.log(cinemaToSelect)
-
+   
     return (
       <div className="App">
         <div className="MainForm">
           <Title />
-          <SearchForm getCity={this.getCity} />
+          <SearchForm getCity={this.getCity} cinemasInitial={this.state.cinemasInitial} />
           <Favorites
             favorites={this.state.favorites}
             selectedCinema={this.selectCinema}
@@ -156,7 +154,7 @@ class App extends Component {
               pic={cinemaToSelect.pic}
             /> : <WelcomePage />
           }
-
+          <Footer/>
         </div>
       </div>
     )

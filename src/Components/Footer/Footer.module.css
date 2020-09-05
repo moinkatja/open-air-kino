@@ -1,0 +1,11 @@
+.Footer {
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.Footer p {
+    margin-top: 0.5rem;
+    padding-top: 0;
+    font-size: 0.8rem;
+}
