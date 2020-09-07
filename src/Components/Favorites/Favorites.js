@@ -27,10 +27,10 @@ class Favorites extends Component {
                 {
                     this.props.favorites.length > 0 ?
                         (<button onClick={this.showActiveCinema} className={classes.FavoritesButton}>
-                            <img src={liked} alt="Favorites"/> <strong> {text} </strong>
+                            <img src={liked} alt="Favorites" className={classes.LikeImg}/> <strong> {text} </strong>
                         </button>
                         ) : (<button className={classes.FavoritesButton} disabled>
-                             <img src={notliked} alt="Favorites empty"/> <strong> {text} </strong>
+                             <img src={notliked} alt="Favorites empty" className={classes.LikeImg}/> <strong> {text} </strong>
                         </button>)
                 }
             </div >
