@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import './SearchForm.module.css';
+import classes from './SearchForm.module.css';
 
 class SearchForm extends Component {
-   
+
+
     render() {
         let cityItems = this.props.cinemasInitial.map((item) =>
             item.city);
@@ -11,7 +12,7 @@ class SearchForm extends Component {
             <option value={city} key={city}>{city}</option>);
 
         return (
-            <form method="post">
+            <form method="post" className={classes.SearchForm}>
                 <select onChange={this.props.getCity} name="city">
                     <option value="">Show all the cities</option>
                     {dropdownOption}

@@ -15,6 +15,7 @@ class App extends Component {
     super(props);
     this.selectCinema = this.selectCinema.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
+    this.showFavorites = this.showFavorites.bind(this);
     this.state = {
       cinemas: [],
       cinemasInitial: [],
@@ -60,23 +61,22 @@ class App extends Component {
         //...this.state,
         selectedCinema: cinemaId
       });
+
     }
   }
 
-  showFavorites = (cinemaId) => {
+  showFavorites = () => {
+
+    console.log(this.state.favorites);
 
     const favoritesArray = [];
     for (let i = 0; i < this.state.favorites.length; i++) {
       favoritesArray.push(this.state.cinemasInitial.find((cinema) => cinema.id === this.state.favorites[i]));
     }
-
-    if (cinemaId) {
       this.setState({
         cinemas: favoritesArray,
         // selectedCinema: cinemaId
       });
-    }
-
   }
 
   toggleFavorite = (id) => {
@@ -121,8 +121,10 @@ class App extends Component {
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
+    } else {
+      cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id >= 0);
     }
-   
+    console.log(cinemaToSelect)
     return (
       <div className="App">
         <div className="MainForm">
@@ -152,6 +154,7 @@ class App extends Component {
               tel={cinemaToSelect.tel}
               street={cinemaToSelect.street}
               pic={cinemaToSelect.pic}
+              postcode={cinemaToSelect.postcode}
             /> : <WelcomePage />
           }
           <Footer/>
