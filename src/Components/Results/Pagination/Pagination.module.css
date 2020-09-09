@@ -1,0 +1,15 @@
+.Pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.PageNumber {
+    list-style-type: none;
+    padding: 5px;
+    margin: 3px;
+    border: 1px solid grey;
+    background-color: rgb(193, 197, 197);
+    border-radius: 5px;
+    cursor: pointer;
+    
+}

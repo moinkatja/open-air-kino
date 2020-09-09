@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../CinemaProfile/CinemaProfile';
 import { BrowserRouter, NavLink } from "react-router-dom";
 
-class Result extends Component {
+function Result(props) {
+    return (
+        <BrowserRouter>
+        <NavLink to={
+            { pathname: `/cinemas/${props.id}` }}>
+            <div
+                className={props.id === props.activeCinema ? "ActiveResultButton" : "ResultButton"}
+                id={props.id}
+                onClick={props.clicked} >
+                <img
+                    className={props.id === props.activeCinema ? "ActiveKinoThumbnail" : "KinoThumbnail"}
+                    src={props.pic} alt="Kino Thumbnail" />
+                <h4><strong>{props.name}</strong></h4> <p> {props.city}, {props.street} </p>
 
-    render() {
-        //console.log(this.props.liked)
-        return (
-            <BrowserRouter>
-                <NavLink to={
-                    { pathname: `/cinemas/${this.props.id}` }}>
-                    <div
-                        className={this.props.id === this.props.activeCinema ? "ActiveResultButton" : "ResultButton"}
-                        id={this.props.id}
-                        onClick={this.props.clicked} >
-                        <img
-                            className={this.props.id === this.props.activeCinema ? "ActiveKinoThumbnail" : "KinoThumbnail"}
-                            src={this.props.pic} alt="Kino Thumbnail" />
-                        <h4><strong>{this.props.name}</strong></h4> <p> {this.props.city}, {this.props.street} </p>
-
-                        <button className={this.props.liked === "Like" ? "ActiveLikeButton" : "NotActiveLikeButton"} key={this.props.id}
-                            onClick={this.props.favorites}
-                        >  {this.props.liked}</button>
-                    </div>
-                </NavLink>
-            </BrowserRouter>
-        )
-    }
+                <button className={props.liked === "Like" ? "ActiveLikeButton" : "NotActiveLikeButton"} key={props.id}
+                    onClick={props.favorites}
+                >  {props.liked}</button>
+            </div>
+        </NavLink>
+    </BrowserRouter>
+    )
 }
 
-export default Result;
+export default Result

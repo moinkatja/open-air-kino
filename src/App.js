@@ -13,9 +13,12 @@ import { getCinemas } from "./getCinemas";
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.selectCinema = this.selectCinema.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.showFavorites = this.showFavorites.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
+
     this.state = {
       cinemas: [],
       cinemasInitial: [],
@@ -24,15 +27,15 @@ class App extends Component {
       liked: false,
       loading: false,
       error: null,
-      filter: ""
+      filter: "",
+      currentPage: 1,
+      resultsPerPage: 5
     };
-
   }
 
   componentDidMount() {
-    const getFavs= JSON.parse(localStorage.getItem("favorites")) || "[]";
+    const getFavs = JSON.parse(localStorage.getItem("favorites")) || "[]";
     const getLikes = JSON.parse(localStorage.getItem("likes")) || "false";
-
     const city = " ";
     this.setState({
       loading: true,
@@ -55,7 +58,7 @@ class App extends Component {
         this.setState({
           error: err.message,
           loading: false,
-          cinemas: [{"_id":"5f3fd4baf6710a7aaf67bc32","id":"0","name":"TestKino","postcode":123456,"city":"Berlin","street":"Abcstr. 124","tel":"12334562","pic":"https://i.postimg.cc/MTWJSP29/kino1.jpg","__v":0},{"_id":"5f3fd528f6710a7aaf67bc33","id":"1","name":"Cinema2","postcode":145732,"city":"Hamburg","street":"Helloworldstr. 124","tel":"23233-343","pic":"https://i.postimg.cc/zvcsTqLQ/kino2.jpg","__v":0}],
+          cinemas: [{ "_id": "5f3fd4baf6710a7aaf67bc32", "id": "0", "name": "TestKino", "postcode": 123456, "city": "Berlin", "street": "Abcstr. 124", "tel": "12334562", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg", "__v": 0 }, { "_id": "5f3fd528f6710a7aaf67bc33", "id": "1", "name": "Cinema2", "postcode": 145732, "city": "Hamburg", "street": "Helloworldstr. 124", "tel": "23233-343", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg", "__v": 0 }],
         });
       });
 
@@ -77,13 +80,11 @@ class App extends Component {
     }
     this.setState({
       cinemas: favoritesArray,
+      currentPage: 1,
     });
-
-
   }
 
   toggleFavorite = (id) => {
-
     if (this.state.favorites.includes(id) === false) {
       this.setState({ favorites: [...this.state.favorites, id] })
 
@@ -95,8 +96,14 @@ class App extends Component {
         })
       })
     }
-   
+  }
 
+  handlePageClick(e) {
+    e.preventDefault();
+    const pageNum = Number(e.target.id);
+    this.setState({
+      currentPage: pageNum
+    });
   }
 
   getCity = (e) => {
@@ -104,6 +111,7 @@ class App extends Component {
     const city = e.target.value;
     this.setState({
       loading: true,
+      currentPage: 1,
     });
 
     if (city === "") {
@@ -124,9 +132,7 @@ class App extends Component {
   componentDidUpdate() {
     localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
     localStorage.setItem("likes", JSON.stringify(this.state.liked));
-
-  } 
-
+  }
 
   render() {
     let cinemaToSelect;
@@ -148,14 +154,17 @@ class App extends Component {
           />
 
           {this.state.loading ? <Spinner /> :
-        
+
             <Results
-              erroe={this.state.error}
+              error={this.state.error}
               cinemas={this.state.cinemas}
               activeCinema={this.state.selectedCinema}
               cinemaToSelect={this.selectCinema}
               favorites={this.toggleFavorite}
               liked={this.state.favorites}
+              resultsPerPage={this.state.resultsPerPage}
+              clickedPage={this.handlePageClick}
+              currentPage={this.state.currentPage}
             />
           }
 
@@ -175,7 +184,6 @@ class App extends Component {
       </div>
     )
   }
-
 }
 
 export default App;
