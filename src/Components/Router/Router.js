@@ -8,9 +8,9 @@ const Router = () => (
 
   <BrowserRouter>
     <Switch>
-      <Route path="/" component={App} exact />
-      <Route path="/cinema/id" exact component={CinemaProfile} />
-      <Redirect to="/" />
+      <Route path="/cinema/:id" exact component={CinemaProfile} />  
+      <Route path="/"  component={App} exact />
+      <Redirect to="/" /> 
     </Switch>
   </BrowserRouter>
 );

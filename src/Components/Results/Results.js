@@ -13,6 +13,7 @@ class Results extends Component {
     }
 
     addFavorite(cinemaId) {
+        localStorage.setItem("favorites", this.props.favorites);
         this.props.favorites(cinemaId);
     }
 
@@ -25,6 +26,7 @@ class Results extends Component {
     render() {
         return (
             <div className={classes.Results}>
+                {this.props.error}
                 {
                     this.props.cinemas.map((cinema, id) =>
                         <Result

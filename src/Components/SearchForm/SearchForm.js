@@ -14,7 +14,7 @@ class SearchForm extends Component {
         return (
             <form method="post" className={classes.SearchForm}>
                 <select onChange={this.props.getCity} name="city">
-                    <option value="">Show all the cities</option>
+                     <option value="">Show all the cities</option> 
                     {dropdownOption}
                 </select>
             </form>

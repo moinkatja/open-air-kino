@@ -24,13 +24,19 @@ class App extends Component {
       liked: false,
       loading: false,
       error: null,
+      filter: ""
     };
+
   }
 
   componentDidMount() {
+    const getFavs= JSON.parse(localStorage.getItem("favorites")) || "[]";
+    const getLikes = JSON.parse(localStorage.getItem("likes")) || "false";
+
     const city = " ";
     this.setState({
       loading: true,
+      favorites: []
     });
 
     getCinemas(city)
@@ -40,25 +46,24 @@ class App extends Component {
           cinemasInitial: data,
           error: null,
           loading: false,
+          favorites: getFavs,
+          liked: getLikes,
         });
       })
 
       .catch(err => {
         this.setState({
-          //cinemas: null,
           error: err.message,
-          loading: false
+          loading: false,
+          cinemas: [{"_id":"5f3fd4baf6710a7aaf67bc32","id":"0","name":"TestKino","postcode":123456,"city":"Berlin","street":"Abcstr. 124","tel":"12334562","pic":"https://i.postimg.cc/MTWJSP29/kino1.jpg","__v":0},{"_id":"5f3fd528f6710a7aaf67bc33","id":"1","name":"Cinema2","postcode":145732,"city":"Hamburg","street":"Helloworldstr. 124","tel":"23233-343","pic":"https://i.postimg.cc/zvcsTqLQ/kino2.jpg","__v":0}],
         });
       });
-
-    //this.baseState = this.state.cinemas;
 
   }
 
   selectCinema = (cinemaId) => {
     if (cinemaId) {
       this.setState({
-        //...this.state,
         selectedCinema: cinemaId
       });
 
@@ -66,22 +71,22 @@ class App extends Component {
   }
 
   showFavorites = () => {
-
-    console.log(this.state.favorites);
-
     const favoritesArray = [];
     for (let i = 0; i < this.state.favorites.length; i++) {
       favoritesArray.push(this.state.cinemasInitial.find((cinema) => cinema.id === this.state.favorites[i]));
     }
-      this.setState({
-        cinemas: favoritesArray,
-        // selectedCinema: cinemaId
-      });
+    this.setState({
+      cinemas: favoritesArray,
+    });
+
+
   }
 
   toggleFavorite = (id) => {
+
     if (this.state.favorites.includes(id) === false) {
       this.setState({ favorites: [...this.state.favorites, id] })
+
     }
     else {
       this.setState({
@@ -90,7 +95,8 @@ class App extends Component {
         })
       })
     }
-    this.baseState = this.state.favorites;
+   
+
   }
 
   getCity = (e) => {
@@ -99,32 +105,37 @@ class App extends Component {
     this.setState({
       loading: true,
     });
-    getCinemas(city)
-      .then(data => {
-        this.setState({
-          cinemas: data,
-          error: null,
-          loading: false,
-        });
+
+    if (city === "") {
+      this.setState({
+        loading: false,
+        cinemas: this.state.cinemasInitial
       })
-      .catch(err => {
-        this.setState({
-          error: err.message,
-          loading: false
-        });
+    }
+    else {
+      const filteredData = this.state.cinemasInitial.filter((cinema) => cinema.city === city);
+      this.setState({
+        loading: false,
+        cinemas: filteredData
       });
+    }
   }
+
+  componentDidUpdate() {
+    localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
+    localStorage.setItem("likes", JSON.stringify(this.state.liked));
+
+  } 
 
 
   render() {
-  
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     } else {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id >= 0);
     }
-    console.log(cinemaToSelect)
+
     return (
       <div className="App">
         <div className="MainForm">
@@ -137,7 +148,9 @@ class App extends Component {
           />
 
           {this.state.loading ? <Spinner /> :
+        
             <Results
+              erroe={this.state.error}
               cinemas={this.state.cinemas}
               activeCinema={this.state.selectedCinema}
               cinemaToSelect={this.selectCinema}
@@ -157,7 +170,7 @@ class App extends Component {
               postcode={cinemaToSelect.postcode}
             /> : <WelcomePage />
           }
-          <Footer/>
+          <Footer />
         </div>
       </div>
     )
