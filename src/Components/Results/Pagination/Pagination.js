@@ -9,7 +9,7 @@ const Pagination = (props) => {
 
     const renderPageNumbers = pageNumbers.map(number => {
         return (
-            <li className={classes.PageNumber}
+            <li className={(props.currentPage === number ? 'PageNumberActive' : 'PageNumberNotActive')}
                 key={number}
                 id={number}
                 onClick={props.clickedPage}

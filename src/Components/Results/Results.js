@@ -51,7 +51,7 @@ class Results extends Component {
                             />
                         )
                     }
-                    <Pagination cinemas={this.props.cinemas} clickedPage={this.props.clickedPage} resultsPerPage={this.props.resultsPerPage} />
+                    <Pagination cinemas={this.props.cinemas} clickedPage={this.props.clickedPage} currentPage={this.props.currentPage}resultsPerPage={this.props.resultsPerPage} />
                 </div>
           
 

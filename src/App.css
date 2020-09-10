@@ -124,6 +124,35 @@ p {
   margin-right: .4rem;
 }
 
+.PageNumberActive {
+  list-style-type: none;
+  width: 20px;
+  padding: 5px;
+  margin: 3px;
+  background-color: rgb(42, 146, 146);
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  
+}
+
+.PageNumberNotActive {
+  list-style-type: none;
+  width: 20px;
+  padding: 5px;
+  margin: 3px;
+  background-color: rgb(193, 197, 197);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  
+}
+
+.PageNumberNotActive:hover {
+  background-color:rgb(42, 146, 146);
+  color: white;
+}
+
 @media (max-width: 1200px) {
 
   .MainForm {
@@ -211,12 +240,10 @@ p {
 
   .ActiveLikeButton {
     float: right;
-
   }
 
   .NotActiveLikeButton {
     float: right;
-    
   }
 }
 
@@ -229,9 +256,9 @@ p {
   .ActiveResultButton p {
     display: none;
   }
+  
   .ActiveLikeButton {
     float: none;
-
   }
 
   .NotActiveLikeButton {
