@@ -1,16 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import App from "../../App";
-import CinemaProfile from "../CinemaProfile/CinemaProfile";
 
-const Router = () => (
+
+const Router = (props) => (
 
   <BrowserRouter>
     <Switch>
-      <Route path="/cinema/:id" exact component={CinemaProfile} />  
-      <Route path="/"  component={App} exact />
-      <Redirect to="/" /> 
+      <Route path="/" exact component={App} />
+      <Route path="/cinemas" exact component={App} />
+      <Route path="/cinemas/:id" component={App} />
+      <Route path="/favorites" component={App} />
+      {/* <Redirect path="/" /> */}
     </Switch>
   </BrowserRouter>
 );

@@ -1,8 +1,8 @@
  
- function getCinemas (city) {
+ function getCinemas (region) {
  
     const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    const url= `${proxyUrl}https://open-air-cinema.herokuapp.com/api/search?city=${city}`
+    const url= `${proxyUrl}https://open-air-cinema.herokuapp.com/api/search?region=${region}`
     const options = {
         method: 'GET',
         headers: {

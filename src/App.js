@@ -7,7 +7,7 @@ import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import Spinner from "./Components/Spinner/Spinner";
 import WelcomePage from './Components/WelcomePage/WelcomePage';
 import Favorites from './Components/Favorites/Favorites';
-import Footer from "./Components/Footer/Footer"
+import Footer from "./Components/Footer/Footer";
 import { getCinemas } from "./getCinemas";
 
 class App extends Component {
@@ -36,13 +36,13 @@ class App extends Component {
   componentDidMount() {
     const getFavs = JSON.parse(localStorage.getItem("favorites")) || "[]";
     const getLikes = JSON.parse(localStorage.getItem("likes")) || "false";
-    const city = " ";
+
     this.setState({
       loading: true,
       favorites: []
     });
 
-    getCinemas(city)
+    getCinemas("")
       .then(data => {
         this.setState({
           cinemas: data,
@@ -56,12 +56,13 @@ class App extends Component {
 
       .catch(err => {
         this.setState({
-          error: err.message,
+          error: err.message + "Sample Data will be displayed. You can try to load cinemas a bit later",
           loading: false,
           cinemas: [{ "_id": "5f3fd4baf6710a7aaf67bc32", "id": "0", "name": "TestKino", "postcode": 123456, "city": "Berlin", "street": "Abcstr. 124", "tel": "12334562", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg", "__v": 0 }, { "_id": "5f3fd528f6710a7aaf67bc33", "id": "1", "name": "Cinema2", "postcode": 145732, "city": "Hamburg", "street": "Helloworldstr. 124", "tel": "23233-343", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg", "__v": 0 }],
+          cinemasInitial: [{ "_id": "5f3fd4baf6710a7aaf67bc32", "id": "0", "name": "TestKino", "postcode": 123456, "city": "Berlin", "street": "Abcstr. 124", "tel": "12334562", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg", "__v": 0 }, { "_id": "5f3fd528f6710a7aaf67bc33", "id": "1", "name": "Cinema2", "postcode": 145732, "city": "Hamburg", "street": "Helloworldstr. 124", "tel": "23233-343", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg", "__v": 0 }],
         });
       });
-
+      
   }
 
   selectCinema = (cinemaId) => {
@@ -106,22 +107,22 @@ class App extends Component {
     });
   }
 
-  getCity = (e) => {
+  getRegion = (e) => {
     e.preventDefault();
-    const city = e.target.value;
+    const region = e.target.value;
     this.setState({
       loading: true,
       currentPage: 1,
     });
 
-    if (city === "") {
+    if (region === "") {
       this.setState({
         loading: false,
         cinemas: this.state.cinemasInitial
       })
     }
     else {
-      const filteredData = this.state.cinemasInitial.filter((cinema) => cinema.city === city);
+      const filteredData = this.state.cinemasInitial.filter((cinema) => cinema.region === region);
       this.setState({
         loading: false,
         cinemas: filteredData
@@ -138,15 +139,16 @@ class App extends Component {
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
-    } else {
+    } 
+/*     else {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id >= 0);
     }
-
+ */
     return (
       <div className="App">
         <div className="MainForm">
           <Title />
-          <SearchForm getCity={this.getCity} cinemasInitial={this.state.cinemasInitial} />
+          <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
           <Favorites
             favorites={this.state.favorites}
             selectedCinema={this.selectCinema}
@@ -154,7 +156,6 @@ class App extends Component {
           />
 
           {this.state.loading ? <Spinner /> :
-
             <Results
               error={this.state.error}
               cinemas={this.state.cinemas}
@@ -172,13 +173,16 @@ class App extends Component {
             <CinemaProfile
               id={cinemaToSelect.id}
               name={cinemaToSelect.name}
+              region={cinemaToSelect.region}
               city={cinemaToSelect.city}
               tel={cinemaToSelect.tel}
               street={cinemaToSelect.street}
               pic={cinemaToSelect.pic}
               postcode={cinemaToSelect.postcode}
             /> : <WelcomePage />
-          }
+
+          }       
+
           <Footer />
         </div>
       </div>

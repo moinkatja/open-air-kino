@@ -8,9 +8,12 @@ class CinemaProfile extends Component {
 
         return (
             <div className={classes.CinemaProfile}>
-                <h2>{this.props.name}</h2>   
+                <h2>{this.props.name}</h2>
+                <p>{this.props.region}</p>
                 <p> {this.props.postcode} {this.props.city}, {this.props.street}</p>
-                <p>Tel: {this.props.tel}</p>
+                { this.props.tel ?
+                    <p>Tel: {this.props.tel}</p> : ""
+                }
                 <img className={classes.CinemaPicture} src={this.props.pic} alt="CinemaPicture" />
             </div>
         )

@@ -5,16 +5,16 @@ class SearchForm extends Component {
 
 
     render() {
-        let cityItems = this.props.cinemasInitial.map((item) =>
-            item.city);
+        let regionItems = this.props.cinemasInitial.map((item) =>
+            item.region);
 
-        let dropdownOption = [...new Set(cityItems)].map((city) =>
-            <option value={city} key={city}>{city}</option>);
+        let dropdownOption = [...new Set(regionItems)].map((region) =>
+            <option value={region} key={region}>{region}</option>);
 
         return (
             <form method="post" className={classes.SearchForm}>
-                <select onChange={this.props.getCity} name="city">
-                     <option value="">Show all the cities</option> 
+                <select onChange={this.props.getRegion} name="region">
+                     <option value="">Show all the regions</option> 
                     {dropdownOption}
                 </select>
             </form>
