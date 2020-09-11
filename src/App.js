@@ -37,6 +37,7 @@ class App extends Component {
     const getFavs = JSON.parse(localStorage.getItem("favorites")) || "[]";
     const getLikes = JSON.parse(localStorage.getItem("likes")) || "false";
 
+
     this.setState({
       loading: true,
       favorites: []
@@ -62,7 +63,28 @@ class App extends Component {
           cinemasInitial: [{ "_id": "5f3fd4baf6710a7aaf67bc32", "id": "0", "name": "TestKino", "postcode": 123456, "city": "Berlin", "street": "Abcstr. 124", "tel": "12334562", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg", "__v": 0 }, { "_id": "5f3fd528f6710a7aaf67bc33", "id": "1", "name": "Cinema2", "postcode": 145732, "city": "Hamburg", "street": "Helloworldstr. 124", "tel": "23233-343", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg", "__v": 0 }],
         });
       });
-      
+
+    this.getResultsPerPage();
+    window.addEventListener("resize", this.getResultsPerPage.bind(this));
+  }
+
+  getResultsPerPage() {
+    console.log(window.innerWidth);
+    let results;
+    if (window.innerWidth > "1000") {
+      if (window.innerHeight > "1320") results = 9;
+      else if (window.innerHeight > "1200") results = 7;
+      else if (window.innerHeight > "1000") results = 6;
+      else results=5;
+    } else if (window.innerWidth< "1000" && window.innerWidth>"750") {
+      if (window.innerHeight>"900") results=6
+      else results=5;
+    }
+    else results = 5;
+    
+    this.setState({
+      resultsPerPage: results
+    });
   }
 
   selectCinema = (cinemaId) => {
@@ -99,7 +121,7 @@ class App extends Component {
     }
   }
 
-  handlePageClick(e) {
+  handlePageClick = (e) => {
     e.preventDefault();
     const pageNum = Number(e.target.id);
     this.setState({
@@ -133,17 +155,24 @@ class App extends Component {
   componentDidUpdate() {
     localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
     localStorage.setItem("likes", JSON.stringify(this.state.liked));
+
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.getResultsPerPage.bind(this));
+  }
+
 
   render() {
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
-    } 
-/*     else {
-      cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id >= 0);
     }
- */
+    /*     else {
+          cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id >= 0);
+        }
+     */
+
     return (
       <div className="App">
         <div className="MainForm">
@@ -180,8 +209,7 @@ class App extends Component {
               pic={cinemaToSelect.pic}
               postcode={cinemaToSelect.postcode}
             /> : <WelcomePage />
-
-          }       
+          }
 
           <Footer />
         </div>

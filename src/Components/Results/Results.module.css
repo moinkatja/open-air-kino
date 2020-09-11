@@ -16,7 +16,7 @@ a:visited {
     .Results {
       width: 100%;
       padding-top: 1rem;
-      padding-bottom: 1rem;
+      padding-bottom: .5rem;
       margin-left: 0;
       border-radius: 0;
     }

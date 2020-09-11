@@ -24,7 +24,6 @@ class Results extends Component {
         this.props.cinemaToSelect(cinemaId);
     }
 
-
     render() {
         const indexOfLastResult = this.props.currentPage * this.props.resultsPerPage;
         const indexOfFirstResult = indexOfLastResult - this.props.resultsPerPage;
@@ -35,7 +34,7 @@ class Results extends Component {
                 {this.props.error}
                 {
                     currentResult.map((cinema, id) =>
-                        <BrowserRouter>
+                        <BrowserRouter key={id}>
                             <NavLink to={
                                 { pathname: `/cinemas/${cinema.id}` }}>
                                 <Result

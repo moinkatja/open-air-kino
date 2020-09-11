@@ -19,7 +19,7 @@
   padding-left: 10px;
   width: 90%;
   min-width: 750px;
-  min-height: 750px;
+  min-height: 90%;
   height: 90%;
   align-items: start;
   align-self: center;
@@ -27,7 +27,7 @@
   border-radius: 10px;
   display: grid;
   grid-template-rows: 10% 80% 5%;
-  grid-template-columns: 50% 30% 20%;
+  grid-template-columns: 50% 25% 25%;
   z-index: 1;
 }
 
@@ -61,7 +61,7 @@ p {
   max-width: 500px;
 }
 
-.ActiveResultButton {
+.ResultButtonActive {
   padding: 5px;
   width: 90%;
   height: 110px;
@@ -91,7 +91,7 @@ p {
   margin-left: 3rem;
 }
 
-.ActiveKinoThumbnail {
+.KinoThumbnailActive {
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -100,7 +100,7 @@ p {
   margin-left: 3rem;
 }
 
-.ActiveLikeButton {
+.LikeButtonActive {
   float: right;
   margin-top: -3rem;
   width: 50px;
@@ -112,7 +112,7 @@ p {
   margin-right: .4rem;
 }
 
-.NotActiveLikeButton {
+.LikeButtonNotActive {
   float: right;
   margin-top: -3rem;
   width: 50px;
@@ -133,7 +133,6 @@ p {
   border-radius: 5px;
   cursor: pointer;
   color: white;
-  
 }
 
 .PageNumberNotActive {
@@ -145,7 +144,6 @@ p {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  
 }
 
 .PageNumberNotActive:hover {
@@ -154,36 +152,47 @@ p {
 }
 
 @media (max-width: 1200px) {
+  h4 {
+    font-size: .8rem;
+  }
 
   .MainForm {
     min-width: 450px;
     grid-template-columns: 40% 50% 10%;
   }
 
-   .ResultButton p{
+  .ResultButton {
+    height: 100px;
+
+  }
+
+  .ResultButtonActive {
+    height: 100px;
+  }
+
+  .ResultButton p{
     display: none;
   } 
 
-  .ActiveResultButton p {
+  .ResultButtonActive p {
     display: none;
   }
  
-  .ActiveLikeButton {
+  .LikeButtonActive {
     float: none;
 
   }
 
-  .NotActiveLikeButton {
+  .LikeButtonNotActive {
     float: none;
     
   }
-
 
   .KinoThumbnail {
     margin-left: 1rem;
   }
 
-  .ActiveKinoThumbnail {
+  .KinoThumbnailActive {
     margin-left: 1rem;
   }
 }
@@ -224,7 +233,7 @@ p {
     font-size: .8rem;
   } 
 
-  .ActiveResultButton p {
+  .ResultButtonActive p {
     padding: 5px;
     display:block;
     font-size: .8rem;
@@ -234,15 +243,15 @@ p {
    margin-left: 2rem;
   }
 
-  .ActiveKinoThumbnail {
+  .KinoThumbnailActive {
     margin-left: 2rem;
   }
 
-  .ActiveLikeButton {
+  .LikeButtonActive {
     float: right;
   }
 
-  .NotActiveLikeButton {
+  .LikeButtonNotActive {
     float: right;
   }
 }
@@ -253,15 +262,15 @@ p {
     display: none;
   } 
 
-  .ActiveResultButton p {
+  .ResultButtonActive p {
     display: none;
   }
   
-  .ActiveLikeButton {
+  .LikeButtonActive {
     float: none;
   }
 
-  .NotActiveLikeButton {
+  .LikeButtonNotActive {
     float: none;
 }
 
