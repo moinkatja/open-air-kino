@@ -13,7 +13,7 @@
   display: flex;
 }
 
-.MainForm {
+.Container {
   background-color: white;
   margin: 0 auto;
   padding-left: 10px;
@@ -156,7 +156,7 @@ p {
     font-size: .8rem;
   }
 
-  .MainForm {
+  .Container {
     min-width: 450px;
     grid-template-columns: 40% 50% 10%;
   }
@@ -203,7 +203,7 @@ p {
     background: white;
   }
 
-  .MainForm {
+  .Container {
     border-radius: 0;
     height: 100%;
     width: 100%;

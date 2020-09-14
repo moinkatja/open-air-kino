@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import "./App.css";
+import CinemaContainer from "../src/Components/CinemaContainer/CinemaContainer";
+import Modal from "./Components/Modal/Modal"
 import Title from "../src/Components/Title/Title";
 import SearchForm from "./Components/SearchForm/SearchForm";
 import Results from "../src/Components/Results/Results";
@@ -9,12 +11,13 @@ import WelcomePage from './Components/WelcomePage/WelcomePage';
 import Favorites from './Components/Favorites/Favorites';
 import Footer from "./Components/Footer/Footer";
 import { getCinemas } from "./getCinemas";
+import { getResultsPerPage } from "./getResultsPerPage";
+import SAMPLE_ARRAY from "./sampledata";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.selectCinema = this.selectCinema.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.showFavorites = this.showFavorites.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
@@ -26,17 +29,16 @@ class App extends Component {
       selectedCinema: null,
       liked: false,
       loading: false,
-      error: null,
+      error: false,
       filter: "",
       currentPage: 1,
-      resultsPerPage: 5
+      resultsPerPage: 5,
     };
   }
 
   componentDidMount() {
     const getFavs = JSON.parse(localStorage.getItem("favorites")) || "[]";
     const getLikes = JSON.parse(localStorage.getItem("likes")) || "false";
-
 
     this.setState({
       loading: true,
@@ -45,45 +47,33 @@ class App extends Component {
 
     getCinemas("")
       .then(data => {
+        if (data)
+          this.setState({
+            cinemas: data,
+            cinemasInitial: data,
+            loading: false,
+            favorites: getFavs,
+            liked: getLikes,
+          });
+      })
+      .catch(err => {
         this.setState({
-          cinemas: data,
-          cinemasInitial: data,
-          error: null,
+          cinemas: SAMPLE_ARRAY,
+          cinemasInitial: SAMPLE_ARRAY,
+          favorites: [],
+          liked: false,
+          error: err.message,
           loading: false,
-          favorites: getFavs,
-          liked: getLikes,
         });
       })
 
-      .catch(err => {
-        this.setState({
-          error: err.message + "Sample Data will be displayed. You can try to load cinemas a bit later",
-          loading: false,
-          cinemas: [{ "_id": "5f3fd4baf6710a7aaf67bc32", "id": "0", "name": "TestKino", "postcode": 123456, "city": "Berlin", "street": "Abcstr. 124", "tel": "12334562", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg", "__v": 0 }, { "_id": "5f3fd528f6710a7aaf67bc33", "id": "1", "name": "Cinema2", "postcode": 145732, "city": "Hamburg", "street": "Helloworldstr. 124", "tel": "23233-343", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg", "__v": 0 }],
-          cinemasInitial: [{ "_id": "5f3fd4baf6710a7aaf67bc32", "id": "0", "name": "TestKino", "postcode": 123456, "city": "Berlin", "street": "Abcstr. 124", "tel": "12334562", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg", "__v": 0 }, { "_id": "5f3fd528f6710a7aaf67bc33", "id": "1", "name": "Cinema2", "postcode": 145732, "city": "Hamburg", "street": "Helloworldstr. 124", "tel": "23233-343", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg", "__v": 0 }],
-        });
-      });
-
-    this.getResultsPerPage();
-    window.addEventListener("resize", this.getResultsPerPage.bind(this));
+    this.getResults();
+    window.addEventListener("resize", this.getResults.bind(this));
   }
 
-  getResultsPerPage() {
-    console.log(window.innerWidth);
-    let results;
-    if (window.innerWidth > "1000") {
-      if (window.innerHeight > "1320") results = 9;
-      else if (window.innerHeight > "1200") results = 7;
-      else if (window.innerHeight > "1000") results = 6;
-      else results=5;
-    } else if (window.innerWidth< "1000" && window.innerWidth>"750") {
-      if (window.innerHeight>"900") results=6
-      else results=5;
-    }
-    else results = 5;
-    
+  getResults = () => {
     this.setState({
-      resultsPerPage: results
+      resultsPerPage: getResultsPerPage()
     });
   }
 
@@ -92,8 +82,13 @@ class App extends Component {
       this.setState({
         selectedCinema: cinemaId
       });
-
     }
+  }
+
+  clearError = () => {
+    this.setState({
+      error: null
+    })
   }
 
   showFavorites = () => {
@@ -101,10 +96,12 @@ class App extends Component {
     for (let i = 0; i < this.state.favorites.length; i++) {
       favoritesArray.push(this.state.cinemasInitial.find((cinema) => cinema.id === this.state.favorites[i]));
     }
+
     this.setState({
       cinemas: favoritesArray,
       currentPage: 1,
     });
+
   }
 
   toggleFavorite = (id) => {
@@ -155,11 +152,10 @@ class App extends Component {
   componentDidUpdate() {
     localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
     localStorage.setItem("likes", JSON.stringify(this.state.liked));
-
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.getResultsPerPage.bind(this));
+    window.removeEventListener("resize", this.getResults.bind(this));
   }
 
 
@@ -168,52 +164,52 @@ class App extends Component {
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     }
-    /*     else {
-          cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id >= 0);
-        }
-     */
 
     return (
-      <div className="App">
-        <div className="MainForm">
-          <Title />
-          <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
-          <Favorites
-            favorites={this.state.favorites}
-            selectedCinema={this.selectCinema}
-            cinemas={this.showFavorites}
+      <CinemaContainer>
+        <Title />
+        <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
+        <Favorites
+          favorites={this.state.favorites}
+          selectedCinema={this.selectCinema}
+          cinemas={this.showFavorites}
+        />
+
+        <Modal
+          show={this.state.error ? true : false}
+          errorMessage={this.state.error}
+          modalClosed={this.clearError}
+        />
+
+        {this.state.loading ? <Spinner /> :
+          <Results
+            error={this.state.error}
+            cinemas={this.state.cinemas}
+            activeCinema={this.state.selectedCinema}
+            cinemaToSelect={this.selectCinema}
+            favorites={this.toggleFavorite}
+            liked={this.state.favorites}
+            resultsPerPage={this.state.resultsPerPage}
+            clickedPage={this.handlePageClick}
+            currentPage={this.state.currentPage}
           />
+        }
 
-          {this.state.loading ? <Spinner /> :
-            <Results
-              error={this.state.error}
-              cinemas={this.state.cinemas}
-              activeCinema={this.state.selectedCinema}
-              cinemaToSelect={this.selectCinema}
-              favorites={this.toggleFavorite}
-              liked={this.state.favorites}
-              resultsPerPage={this.state.resultsPerPage}
-              clickedPage={this.handlePageClick}
-              currentPage={this.state.currentPage}
-            />
-          }
+        {cinemaToSelect ?
+          <CinemaProfile
+            id={cinemaToSelect.id}
+            name={cinemaToSelect.name}
+            region={cinemaToSelect.region}
+            city={cinemaToSelect.city}
+            tel={cinemaToSelect.tel}
+            street={cinemaToSelect.street}
+            pic={cinemaToSelect.pic}
+            postcode={cinemaToSelect.postcode}
+          /> : <WelcomePage />
+        }
+        <Footer />
+      </CinemaContainer>
 
-          {cinemaToSelect ?
-            <CinemaProfile
-              id={cinemaToSelect.id}
-              name={cinemaToSelect.name}
-              region={cinemaToSelect.region}
-              city={cinemaToSelect.city}
-              tel={cinemaToSelect.tel}
-              street={cinemaToSelect.street}
-              pic={cinemaToSelect.pic}
-              postcode={cinemaToSelect.postcode}
-            /> : <WelcomePage />
-          }
-
-          <Footer />
-        </div>
-      </div>
     )
   }
 }

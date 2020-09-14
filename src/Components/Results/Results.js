@@ -31,7 +31,6 @@ class Results extends Component {
 
         return (
             <div className={classes.Results}>
-                {this.props.error}
                 {
                     currentResult.map((cinema, id) =>
                         <BrowserRouter key={id}>
