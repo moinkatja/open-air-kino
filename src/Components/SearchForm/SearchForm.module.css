@@ -1,19 +1,20 @@
 .SearchForm {
     width: 100%;
+    justify-self: left;
+
 }
 
-select {
+.SelectField {
     font-size: 1rem;
     height: 3rem;
     background-color: #52dfd2;
-    text-align: center;
     border-radius: 10px;
     border: 1px solid rgb(175, 173, 173);
     box-shadow: 0px 1px 5px 0px #3f3e3e;
     z-index: 2;
     cursor: pointer;
-    margin-top: 1.3rem;
     width: 200px;
+    margin-top: 1.3rem;
    
 }
 
@@ -27,7 +28,7 @@ select option {
         margin: 0 auto;
         margin-bottom: 1rem;
      }
-    select {
+     .SelectField {
         width: 200px;
         height: 2rem;
         margin-left: 0;
@@ -37,7 +38,7 @@ select option {
 
 @media (max-width: 350px) {
  
-    select {
+    .SelectField {
         width: 180px;
         font-size: .8rem;
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './Favorites.module.css';
 import liked from "../../img/liked.png";
 import notliked from "../../img/notliked.png";
-import { NavLink, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, NavLink } from 'react-router-dom';
 
 class Favorites extends Component {
     constructor() {
@@ -25,7 +25,6 @@ class Favorites extends Component {
                     <NavLink to={
                         { pathname: `/favorites` }}>
                         {
-
                             this.props.favorites.length > 0 ?
                                 (<button onClick={this.showActiveCinema} className={classes.FavoritesButton}>
                                     <img src={liked} alt="Favorites" className={classes.LikeImg} /> <strong> {text} </strong>

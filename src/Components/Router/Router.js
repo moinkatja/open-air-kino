@@ -1,20 +1,42 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 
 import App from "../../App";
+import history from '../../history';
 
+function RouterFile() {
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route
+          exact path="/"
+          render={() => (
+            <App />
+          )} />
+      {/*   <Route
+          exact path="/favorites"
+          render={(match) => (
+            <App />
+          )} /> */}
+       
+        <Route
+          exact path="/:tab(cinemas|favorites)/:id"
+          render={(match) => (
+            <App
+              cinemaID={match.id}
+            />
+          )} />
+         {/* <Route
+          exact path="/cinemas"
+          render={() => (
+            <App />
+          )} />*/}
+        <Redirect to="/" /> 
+      </Switch>
+    </Router>
+  )
 
-const Router = (props) => (
+}
 
-  <BrowserRouter>
-    <Switch>
-      <Route path="/" exact component={App} />
-      <Route path="/cinemas" exact component={App} />
-      <Route path="/cinemas/:id" component={App} />
-      <Route path="/favorites" component={App} />
-      {/* <Redirect path="/" /> */}
-    </Switch>
-  </BrowserRouter>
-);
+export default RouterFile
 
-export default Router;

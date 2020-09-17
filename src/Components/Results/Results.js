@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Result from "./Result/Result";
 import Pagination from "./Pagination/Pagination";
-import { BrowserRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 import classes from "./Results.module.css";
@@ -30,12 +30,12 @@ class Results extends Component {
         const currentResult = this.props.cinemas.slice(indexOfFirstResult, indexOfLastResult);
 
         return (
+
             <div className={classes.Results}>
                 {
                     currentResult.map((cinema, id) =>
-                        <BrowserRouter key={id}>
-                            <NavLink to={
-                                { pathname: `/cinemas/${cinema.id}` }}>
+                            <NavLink key = {id}
+                            to={`/${this.props.tab}/${cinema.id}`}>
                                 <Result
                                     name={cinema.name}
                                     tel={cinema.tel}
@@ -50,7 +50,6 @@ class Results extends Component {
                                     liked={(this.props.liked).includes(cinema.id) ? "Dislike" : "Like"}
                                 />
                             </NavLink>
-                        </BrowserRouter>
                     )
                 }
                 <Pagination cinemas={this.props.cinemas} clickedPage={this.props.clickedPage} currentPage={this.props.currentPage} resultsPerPage={this.props.resultsPerPage} />

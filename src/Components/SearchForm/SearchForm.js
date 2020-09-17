@@ -13,7 +13,7 @@ class SearchForm extends Component {
 
         return (
             <form method="post" className={classes.SearchForm}>
-                <select onChange={this.props.getRegion} name="region">
+                <select className={classes.SelectField} onChange={this.props.getRegion} name="region">
                      <option value="">Show all the regions</option> 
                     {dropdownOption}
                 </select>

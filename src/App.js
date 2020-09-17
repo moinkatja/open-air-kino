@@ -8,11 +8,19 @@ import Results from "../src/Components/Results/Results";
 import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import Spinner from "./Components/Spinner/Spinner";
 import WelcomePage from './Components/WelcomePage/WelcomePage';
+import HomeBtn from "./Components/HomeBtn/HomeBtn"
 import Favorites from './Components/Favorites/Favorites';
 import Footer from "./Components/Footer/Footer";
 import { getCinemas } from "./getCinemas";
 import { getResultsPerPage } from "./getResultsPerPage";
+import { getFavs } from "./services";
+
+
+
 import SAMPLE_ARRAY from "./sampledata";
+
+
+//import Router from "./Components/Router/Router";
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +41,7 @@ class App extends Component {
       filter: "",
       currentPage: 1,
       resultsPerPage: 5,
+      tab: "cinemas"
     };
   }
 
@@ -46,6 +55,7 @@ class App extends Component {
     });
 
     getCinemas("")
+
       .then(data => {
         if (data)
           this.setState({
@@ -100,6 +110,7 @@ class App extends Component {
     this.setState({
       cinemas: favoritesArray,
       currentPage: 1,
+      tab: "favorites"
     });
 
   }
@@ -137,14 +148,17 @@ class App extends Component {
     if (region === "") {
       this.setState({
         loading: false,
-        cinemas: this.state.cinemasInitial
+        cinemas: this.state.cinemasInitial,
+        tab: "cinemas"
       })
     }
     else {
       const filteredData = this.state.cinemasInitial.filter((cinema) => cinema.region === region);
       this.setState({
         loading: false,
-        cinemas: filteredData
+        cinemas: filteredData,
+        tab: "cinemas",
+        selectedCinema: filteredData[0].id,
       });
     }
   }
@@ -158,33 +172,41 @@ class App extends Component {
     window.removeEventListener("resize", this.getResults.bind(this));
   }
 
-
   render() {
+
+
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     }
 
+    const cinemasToDisplay = (this.state.tab === 'favorites') ? getFavs(this.state.cinemas, this.state.favorites) : this.state.cinemas;
+    
     return (
-      <CinemaContainer>
-        <Title />
-        <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
-        <Favorites
-          favorites={this.state.favorites}
-          selectedCinema={this.selectCinema}
-          cinemas={this.showFavorites}
-        />
 
+      <CinemaContainer>
         <Modal
           show={this.state.error ? true : false}
           errorMessage={this.state.error}
           modalClosed={this.clearError}
         />
-
+        <Title />
+        <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
+        {
+          this.state.tab === 'favorites' ?
+            (<HomeBtn clicked={this.props.clicked} />) :
+            (<Favorites
+              tab={this.state.tab}
+              favorites={this.state.favorites}
+              selectedCinema={this.selectCinema}
+              cinemas={this.showFavorites}
+            />)
+        }
         {this.state.loading ? <Spinner /> :
           <Results
+            tab={this.state.tab}
             error={this.state.error}
-            cinemas={this.state.cinemas}
+            cinemas={cinemasToDisplay}
             activeCinema={this.state.selectedCinema}
             cinemaToSelect={this.selectCinema}
             favorites={this.toggleFavorite}
@@ -194,7 +216,6 @@ class App extends Component {
             currentPage={this.state.currentPage}
           />
         }
-
         {cinemaToSelect ?
           <CinemaProfile
             id={cinemaToSelect.id}

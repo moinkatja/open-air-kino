@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './CinemaProfile.module.css';
 
 class CinemaProfile extends Component {
-
+  
     render() {
         return (
             <div className={classes.CinemaProfile}>
