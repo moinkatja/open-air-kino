@@ -173,14 +173,15 @@ class App extends Component {
   }
 
   render() {
-
+    console.log(this.props.cinemaId);
 
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
     }
 
-    const cinemasToDisplay = (this.state.tab === 'favorites') ? getFavs(this.state.cinemas, this.state.favorites) : this.state.cinemas;
+    const cinemasToDisplay = (this.props.tab === 'favorites') ? getFavs(this.state.cinemas, this.state.favorites) :this.state.cinemas
+   // : (this.props.cinemaId ? getFavs(this.state.cinemasInitial, this.props.cinemaId):  this.state.cinemas)
     
     return (
 
@@ -196,7 +197,6 @@ class App extends Component {
           this.state.tab === 'favorites' ?
             (<HomeBtn clicked={this.props.clicked} />) :
             (<Favorites
-              tab={this.state.tab}
               favorites={this.state.favorites}
               selectedCinema={this.selectCinema}
               cinemas={this.showFavorites}

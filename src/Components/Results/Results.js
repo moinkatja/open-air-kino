@@ -15,7 +15,7 @@ class Results extends Component {
     }
 
     addFavorite(cinemaId) {
-        this.props.favorites(cinemaId);
+        this.props.favorites(cinemaId)
     }
 
     changeActiveCinema(e) {

@@ -13,25 +13,28 @@ function RouterFile() {
           render={() => (
             <App />
           )} />
-      {/*   <Route
-          exact path="/favorites"
-          render={(match) => (
-            <App />
-          )} /> */}
-       
         <Route
-          exact path="/:tab(cinemas|favorites)/:id"
+          eaxct path="/:tab"
           render={(match) => (
             <App
-              cinemaID={match.id}
+              tab={match.match.params.tab}
             />
           )} />
-         {/* <Route
+
+        <Route
+          exact path="/:tab(cinemas|favorites)/:cinemaId"
+          render={(match) => (
+            <App
+              cinemaId={match.match.params.cinemaId}
+              tab={match.match.params.tab}
+            />
+          )} />
+        {/* <Route
           exact path="/cinemas"
           render={() => (
             <App />
           )} />*/}
-        <Redirect to="/" /> 
+        <Redirect to="/" />
       </Switch>
     </Router>
   )
