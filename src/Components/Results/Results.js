@@ -3,6 +3,7 @@ import Result from "./Result/Result";
 import Pagination from "./Pagination/Pagination";
 import { NavLink } from "react-router-dom";
 
+import { getFavs } from "../../services";
 
 import classes from "./Results.module.css";
 
@@ -25,10 +26,13 @@ class Results extends Component {
     }
 
     render() {
+    
+        const cinemasToDisplay = (this.props.tab === 'favorites') ? getFavs(this.props.cinemas, this.props.liked) : this.props.cinemas;
         const indexOfLastResult = this.props.currentPage * this.props.resultsPerPage;
         const indexOfFirstResult = indexOfLastResult - this.props.resultsPerPage;
-        const currentResult = this.props.cinemas.slice(indexOfFirstResult, indexOfLastResult);
+        const currentResult = cinemasToDisplay.slice(indexOfFirstResult, indexOfLastResult);
 
+        // : (this.props.cinemaId ? getFavs(this.state.cinemasInitial, this.props.cinemaId):  this.state.cinemas)
         return (
 
             <div className={classes.Results}>
@@ -46,7 +50,7 @@ class Results extends Component {
                                     pic={cinema.pic}
                                     clicked={this.changeActiveCinema}
                                     favorites={() => this.addFavorite(cinema.id)}
-                                    activeCinema={this.props.activeCinema}
+                                    activeCinema={this.props.activeCinema} 
                                     liked={(this.props.liked).includes(cinema.id) ? "Dislike" : "Like"}
                                 />
                             </NavLink>

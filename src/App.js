@@ -13,8 +13,6 @@ import Favorites from './Components/Favorites/Favorites';
 import Footer from "./Components/Footer/Footer";
 import { getCinemas } from "./getCinemas";
 import { getResultsPerPage } from "./getResultsPerPage";
-import { getFavs } from "./services";
-
 
 
 import SAMPLE_ARRAY from "./sampledata";
@@ -41,7 +39,6 @@ class App extends Component {
       filter: "",
       currentPage: 1,
       resultsPerPage: 5,
-      tab: "cinemas"
     };
   }
 
@@ -110,7 +107,6 @@ class App extends Component {
     this.setState({
       cinemas: favoritesArray,
       currentPage: 1,
-      tab: "favorites"
     });
 
   }
@@ -149,7 +145,6 @@ class App extends Component {
       this.setState({
         loading: false,
         cinemas: this.state.cinemasInitial,
-        tab: "cinemas"
       })
     }
     else {
@@ -157,7 +152,6 @@ class App extends Component {
       this.setState({
         loading: false,
         cinemas: filteredData,
-        tab: "cinemas",
         selectedCinema: filteredData[0].id,
       });
     }
@@ -173,16 +167,11 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.cinemaId);
-
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
-    }
+    } 
 
-    const cinemasToDisplay = (this.props.tab === 'favorites') ? getFavs(this.state.cinemas, this.state.favorites) :this.state.cinemas
-   // : (this.props.cinemaId ? getFavs(this.state.cinemasInitial, this.props.cinemaId):  this.state.cinemas)
-    
     return (
 
       <CinemaContainer>
@@ -194,7 +183,7 @@ class App extends Component {
         <Title />
         <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
         {
-          this.state.tab === 'favorites' ?
+          this.props.tab === 'favorites' ?
             (<HomeBtn clicked={this.props.clicked} />) :
             (<Favorites
               favorites={this.state.favorites}
@@ -204,9 +193,10 @@ class App extends Component {
         }
         {this.state.loading ? <Spinner /> :
           <Results
-            tab={this.state.tab}
+            tab={this.props.tab}
+            cinemaId = {this.props.cinemaId}
             error={this.state.error}
-            cinemas={cinemasToDisplay}
+            cinemas={this.state.cinemas}
             activeCinema={this.state.selectedCinema}
             cinemaToSelect={this.selectCinema}
             favorites={this.toggleFavorite}

@@ -10,15 +10,8 @@ function RouterFile() {
       <Switch>
         <Route
           exact path="/"
-          render={() => (
-            <App />
-          )} />
-        <Route
-          eaxct path="/:tab"
           render={(match) => (
-            <App
-              tab={match.match.params.tab}
-            />
+            <App tab="cinemas" />
           )} />
 
         <Route
@@ -29,6 +22,13 @@ function RouterFile() {
               tab={match.match.params.tab}
             />
           )} />
+         <Route
+          eaxct path="/:tab(cinemas|favorites)"
+          render={(match) => (
+            <App
+              tab={match.match.params.tab}
+            />
+          )} /> 
         {/* <Route
           exact path="/cinemas"
           render={() => (
