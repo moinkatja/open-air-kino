@@ -170,7 +170,7 @@ class App extends Component {
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
-    } 
+    } else cinemaToSelect=this.state.cinemas.find((cinema) => cinema.id === this.props.cinemaId)
 
     return (
 

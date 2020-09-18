@@ -15,8 +15,6 @@ class Favorites extends Component {
         this.props.selectedCinema(this.props.favorites[0]);
     }
 
-
-
     render() {
         const text = (this.props.favorites.length) ? this.props.favorites.length : '0';
         return (

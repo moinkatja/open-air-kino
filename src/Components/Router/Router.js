@@ -10,7 +10,7 @@ function RouterFile() {
       <Switch>
         <Route
           exact path="/"
-          render={(match) => (
+          render={() => (
             <App tab="cinemas" />
           )} />
 

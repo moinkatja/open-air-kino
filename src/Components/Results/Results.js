@@ -26,7 +26,6 @@ class Results extends Component {
     }
 
     render() {
-    
         const cinemasToDisplay = (this.props.tab === 'favorites') ? getFavs(this.props.cinemas, this.props.liked) : this.props.cinemas;
         const indexOfLastResult = this.props.currentPage * this.props.resultsPerPage;
         const indexOfFirstResult = indexOfLastResult - this.props.resultsPerPage;
@@ -50,7 +49,7 @@ class Results extends Component {
                                     pic={cinema.pic}
                                     clicked={this.changeActiveCinema}
                                     favorites={() => this.addFavorite(cinema.id)}
-                                    activeCinema={this.props.activeCinema} 
+                                    activeCinema={this.props.cinemaId} 
                                     liked={(this.props.liked).includes(cinema.id) ? "Dislike" : "Like"}
                                 />
                             </NavLink>
