@@ -26,36 +26,39 @@ class Results extends Component {
     }
 
     render() {
+
         const cinemasToDisplay = (this.props.tab === 'favorites') ? getFavs(this.props.cinemas, this.props.liked) : this.props.cinemas;
         const indexOfLastResult = this.props.currentPage * this.props.resultsPerPage;
         const indexOfFirstResult = indexOfLastResult - this.props.resultsPerPage;
         const currentResult = cinemasToDisplay.slice(indexOfFirstResult, indexOfLastResult);
-
+        console.log(cinemasToDisplay)
         // : (this.props.cinemaId ? getFavs(this.state.cinemasInitial, this.props.cinemaId):  this.state.cinemas)
         return (
 
             <div className={classes.Results}>
                 {
                     currentResult.map((cinema, id) =>
-                            <NavLink key = {id}
+                        <NavLink key={id}
                             to={`/${this.props.tab}/${cinema.id}`}>
-                                <Result
-                                    name={cinema.name}
-                                    tel={cinema.tel}
-                                    street={cinema.street}
-                                    city={cinema.city}
-                                    id={cinema.id}
-                                    key={id}
-                                    pic={cinema.pic}
-                                    clicked={this.changeActiveCinema}
-                                    favorites={() => this.addFavorite(cinema.id)}
-                                    activeCinema={this.props.cinemaId} 
-                                    liked={(this.props.liked).includes(cinema.id) ? "Dislike" : "Like"}
-                                />
-                            </NavLink>
+                            <Result
+                                name={cinema.name}
+                                tel={cinema.tel}
+                                street={cinema.street}
+                                city={cinema.city}
+                                id={cinema.id}
+                                key={id}
+                                pic={cinema.pic}
+                                clicked={this.changeActiveCinema}
+                                favorites={() => this.addFavorite(cinema.id)}
+                                activeCinema={this.props.cinemaId}
+                                liked={(this.props.liked).includes(cinema.id) ? "Dislike" : "Like"}
+                            />
+                        </NavLink>
                     )
                 }
-                <Pagination cinemas={this.props.cinemas} clickedPage={this.props.clickedPage} currentPage={this.props.currentPage} resultsPerPage={this.props.resultsPerPage} />
+                <Pagination
+                    cinemas={cinemasToDisplay}
+                    clickedPage={this.props.clickedPage} currentPage={this.props.currentPage} resultsPerPage={this.props.resultsPerPage} />
             </div>
 
 

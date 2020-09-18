@@ -1,0 +1,17 @@
+.ControlButtons {
+    display: inline-block;
+    padding-top: 1.5rem;
+}
+
+@media (max-width: 800px) {
+    .ControlButtons {
+      margin: 0 auto;
+      text-align: center;
+      background-color: white;
+      opacity: 0.9;
+      border-radius: 10px;
+      height: 3rem;
+      padding-top: .2rem;
+    }
+}
+    

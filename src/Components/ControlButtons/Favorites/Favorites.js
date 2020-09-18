@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Favorites.module.css';
-import liked from "../../img/liked.png";
-import notliked from "../../img/notliked.png";
+import liked from "../../../img/liked.png";
+import notliked from "../../../img/notliked.png";
 import { BrowserRouter, NavLink } from 'react-router-dom';
 
 class Favorites extends Component {
@@ -9,11 +9,11 @@ class Favorites extends Component {
         super();
         this.showActiveCinema = this.showActiveCinema.bind(this);
     }
-
     showActiveCinema() {
         this.props.cinemas();
         this.props.selectedCinema(this.props.favorites[0]);
     }
+
 
     render() {
         const text = (this.props.favorites.length) ? this.props.favorites.length : '0';
@@ -34,7 +34,7 @@ class Favorites extends Component {
                         }
                     </NavLink>
                 </BrowserRouter>
-            </div >
+            </div>
 
         )
     }

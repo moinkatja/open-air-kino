@@ -1,0 +1,26 @@
+.HomeBtn {
+  display: inline;
+  text-align: right;
+  padding-right: .3rem;
+  border: none;
+  background-color: transparent;
+}
+
+.HomeImg {
+  width: 28px;
+}
+  
+
+@media (max-width: 800px) {
+  
+  .HomeBtn {
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .HomeImg {
+    width: 25px;
+    margin-left: .4rem;
+  }
+}
+  

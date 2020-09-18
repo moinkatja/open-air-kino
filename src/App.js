@@ -8,17 +8,13 @@ import Results from "../src/Components/Results/Results";
 import CinemaProfile from "./Components/CinemaProfile/CinemaProfile";
 import Spinner from "./Components/Spinner/Spinner";
 import WelcomePage from './Components/WelcomePage/WelcomePage';
-import HomeBtn from "./Components/HomeBtn/HomeBtn"
-import Favorites from './Components/Favorites/Favorites';
+import ControlButtons from "./Components/ControlButtons/ControlButtons"
 import Footer from "./Components/Footer/Footer";
 import { getCinemas } from "./getCinemas";
 import { getResultsPerPage } from "./getResultsPerPage";
 
 
 import SAMPLE_ARRAY from "./sampledata";
-
-
-//import Router from "./Components/Router/Router";
 
 class App extends Component {
   constructor(props) {
@@ -167,10 +163,11 @@ class App extends Component {
   }
 
   render() {
+
     let cinemaToSelect;
     if (this.state.selectedCinema) {
       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
-    } else cinemaToSelect=this.state.cinemas.find((cinema) => cinema.id === this.props.cinemaId)
+    } else cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.props.cinemaId)
 
     return (
 
@@ -181,20 +178,20 @@ class App extends Component {
           modalClosed={this.clearError}
         />
         <Title />
-        <SearchForm getRegion={this.getRegion} cinemasInitial={this.state.cinemasInitial} />
-        {
-          this.props.tab === 'favorites' ?
-            (<HomeBtn clicked={this.props.clicked} />) :
-            (<Favorites
-              favorites={this.state.favorites}
-              selectedCinema={this.selectCinema}
-              cinemas={this.showFavorites}
-            />)
-        }
+        <SearchForm
+          getRegion={this.getRegion}
+          cinemasInitial={this.state.cinemasInitial} />
+        <ControlButtons
+          favorites={this.state.favorites}
+          selectedCinema={this.selectCinema}
+          cinemas={this.showFavorites} 
+          clickedHomeBtn={this.props.clicked}
+         />
+
         {this.state.loading ? <Spinner /> :
           <Results
             tab={this.props.tab}
-            cinemaId = {this.props.cinemaId}
+            cinemaId={this.props.cinemaId}
             error={this.state.error}
             cinemas={this.state.cinemas}
             activeCinema={this.state.selectedCinema}
@@ -206,6 +203,7 @@ class App extends Component {
             currentPage={this.state.currentPage}
           />
         }
+
         {cinemaToSelect ?
           <CinemaProfile
             id={cinemaToSelect.id}

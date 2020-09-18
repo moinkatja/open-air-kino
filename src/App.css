@@ -22,12 +22,13 @@
   min-height: 600px;
   height: 90%;
   align-items: start;
+  justify-content: left;
   align-self: center;
   opacity: 0.9;
   border-radius: 10px;
   display: grid;
   grid-template-rows: 10% 80% 5%;
-  grid-template-columns: 50% 40% 10%;
+  grid-template-columns: 50% 35% 15%;
   z-index: 1;
 }
 
@@ -158,7 +159,7 @@ p {
 
   .Container {
     min-width: 450px;
-    grid-template-columns: 40% 50% 10%;
+    grid-template-columns: 40% 40% 20%;
   }
 
   .ResultButton {

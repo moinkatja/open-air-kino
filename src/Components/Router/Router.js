@@ -20,6 +20,7 @@ function RouterFile() {
             <App
               cinemaId={match.match.params.cinemaId}
               tab={match.match.params.tab}
+              path={match.match}
             />
           )} />
          <Route
@@ -27,6 +28,7 @@ function RouterFile() {
           render={(match) => (
             <App
               tab={match.match.params.tab}
+              path={match.match}
             />
           )} /> 
         {/* <Route
