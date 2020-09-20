@@ -12,6 +12,7 @@ import ControlButtons from "./Components/ControlButtons/ControlButtons"
 import Footer from "./Components/Footer/Footer";
 import { getCinemas } from "./getCinemas";
 import { getResultsPerPage } from "./getResultsPerPage";
+import history from "./history";
 
 
 import SAMPLE_ARRAY from "./sampledata";
@@ -87,6 +88,12 @@ class App extends Component {
       });
     }
   }
+
+
+  routeChange = () => {
+    history.go('/');
+  }
+
 
   clearError = () => {
     this.setState({
@@ -165,9 +172,11 @@ class App extends Component {
   render() {
 
     let cinemaToSelect;
-    if (this.state.selectedCinema) {
-      cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
-    } else cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.props.cinemaId)
+    /*  if (this.state.selectedCinema) {
+       cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.state.selectedCinema);
+     } else  */
+
+    cinemaToSelect = this.state.cinemas.find((cinema) => cinema.id === this.props.cinemaId)
 
     return (
 
@@ -184,9 +193,9 @@ class App extends Component {
         <ControlButtons
           favorites={this.state.favorites}
           selectedCinema={this.selectCinema}
-          cinemas={this.showFavorites} 
-          clickedHomeBtn={this.props.clicked}
-         />
+          cinemas={this.showFavorites}
+          clickedHomeBtn={this.routeChange}
+        />
 
         {this.state.loading ? <Spinner /> :
           <Results

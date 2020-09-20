@@ -6,15 +6,17 @@ import classes from "./ControlButtons.module.css";
 function ControlButtons(props) {
     return (
         <div className={classes.ControlButtons}>
-
-            <HomeBtn
-                clickedHomeBtn={props.clicked} 
-            />
-            <Favorites
-                favorites={props.favorites}
-                selectedCinema={props.selectedCinema}
-                cinemas={props.cinemas}
-            />
+                <HomeBtn
+                    clickedHomeBtn={props.clickedHomeBtn}
+                    cinemas={props.cinemas}
+                    cinemasIntiial={props.cinemasIntiial}
+                />
+             
+                <Favorites
+                    favorites={props.favorites}
+                    selectedCinema={props.selectedCinema}
+                    cinemas={props.cinemas}
+                />
         </div>
     )
 }

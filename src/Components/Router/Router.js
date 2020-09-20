@@ -15,7 +15,7 @@ function RouterFile() {
           )} />
 
         <Route
-          exact path="/:tab(cinemas|favorites)/:cinemaId"
+          exact path="/:tab(cinemas|favorites)/:cinemaId?"
           render={(match) => (
             <App
               cinemaId={match.match.params.cinemaId}

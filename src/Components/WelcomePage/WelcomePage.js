@@ -1,5 +1,6 @@
 import React from 'react'
-import classes from './WelcomePage.module.css'
+import classes from './WelcomePage.module.css';
+import PopCorn from "../../img/popcorn.png";
 
 function WelcomePage() {
     return (
@@ -8,6 +9,7 @@ function WelcomePage() {
             <li>You can search and browse outdoor cinemas</li>
             <li>You can view cinema details like address etc.</li>
             <li>You can add to favorites the cinemas you like</li>
+            <img src ={PopCorn} alt = "PopCorn" className={classes.WelcomePic}/>
         </div>
 
     )

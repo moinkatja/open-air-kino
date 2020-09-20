@@ -7,7 +7,7 @@ class CinemaProfile extends Component {
         return (
             <div className={classes.CinemaProfile}>
                 <h2>{this.props.name}</h2>
-                <p>{this.props.region}</p>
+                <p><strong>{this.props.region}</strong></p>
                 <p> {this.props.postcode} {this.props.city}, {this.props.street}</p>
                 { this.props.tel ?
                     <p>Tel: {this.props.tel}</p> : ""

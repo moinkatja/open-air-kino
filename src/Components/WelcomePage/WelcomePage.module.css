@@ -24,16 +24,18 @@
 .WelcomePage h1 {
   text-align: center;
   align-items: flex-start;
-
 }
 
 .WelcomePage li {
-
   padding-bottom: 1rem;
-
 }
 
-
+.WelcomePic {
+  margin-top: 2rem;
+  width: 200px;
+  border-radius: 50%;
+  opacity: 1;
+}
 
 
 @media (max-width: 800px) {

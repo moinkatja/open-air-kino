@@ -38,8 +38,8 @@ class Results extends Component {
             <div className={classes.Results}>
                 {
                     currentResult.map((cinema, id) =>
-                        <NavLink key={id}
-                            to={`/${this.props.tab}/${cinema.id}`}>
+                        <NavLink key={id} 
+                            to={`/${this.props.tab}/${cinema.id}`} >
                             <Result
                                 name={cinema.name}
                                 tel={cinema.tel}
