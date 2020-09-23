@@ -1,11 +1,14 @@
 .HomeBtn {
-  display: inline;
-  text-align: right;
-  padding-right: .3rem;
+  margin-top: .4rem;
+  margin-left: .2rem;
+  padding-right: .2rem;
+  height: 2.5rem;
   border: none;
   background-color: transparent;
   cursor: pointer;
+  padding-bottom: 0;
 }
+
 
 .HomeImg {
   width: 28px;
@@ -17,6 +20,7 @@
   .HomeBtn {
     text-align: center;
     padding-right: 0;
+    margin-top: 0;
   }
 
   .HomeImg {

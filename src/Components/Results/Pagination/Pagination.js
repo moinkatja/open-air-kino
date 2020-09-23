@@ -7,6 +7,8 @@ const Pagination = (props) => {
         pageNumbers.push(i);
     }
 
+    if (pageNumbers.length === 1) return "";
+
     const renderPageNumbers = pageNumbers.map(number => {
         return (
             <li className={(props.currentPage === number ? 'PageNumberActive' : 'PageNumberNotActive')}
@@ -18,6 +20,7 @@ const Pagination = (props) => {
             </li>
         );
     });
+
     return (
         <div className={classes.Pagination}>
             {renderPageNumbers}

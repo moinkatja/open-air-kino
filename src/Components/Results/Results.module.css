@@ -1,6 +1,12 @@
  .Results {
     background-color: white;
-    margin-top: .6rem;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-radius: 10px;
+    margin-right: .5rem;
+    margin-left: 1.5rem;
+    margin-top: -.8rem;
+    /* box-shadow: 0px 0px 5px 0px #757575; */
 } 
 
 a {
@@ -11,6 +17,10 @@ a:visited {
     color: rgb(63, 60, 60);
 }
 
+.NoFavMessage {
+    align-items: center;
+    margin-top: 10%;
+}
 
 @media (max-width: 800px) {
     .Results {
@@ -19,5 +29,6 @@ a:visited {
       padding-bottom: .5rem;
       margin-left: 0;
       border-radius: 0;
+      margin-top: 1rem;
     }
 }

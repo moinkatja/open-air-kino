@@ -1,4 +1,6 @@
 .Loader {
+  grid-column-start: 1;
+  grid-column-end: 2;
   align-self: center;
   justify-self: center;
   font-size: 10px;

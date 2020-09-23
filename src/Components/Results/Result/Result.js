@@ -2,21 +2,22 @@ import React from 'react';
 import '../../CinemaProfile/CinemaProfile';
 
 function Result(props) {
+    
     return (
        
             <div
-                className={props.id === props.activeCinema ? "ResultButtonActive" : "ResultButton"}
+                className={props.id === props.selectedCinema? "ResultButtonActive" : "ResultButton"}
                 id={props.id}
-                onClick={props.clicked} >
+                onClick={props.clickedResult} >
                 <img
-                    className={props.id === props.activeCinema ? "KinoThumbnailActive" : "KinoThumbnail"}
+                    className={props.id === props.selectedCinema ? "KinoThumbnailActive" : "KinoThumbnail"}
                     src={props.pic} alt="Kino Thumbnail" />
                 <h4><strong>{props.name}</strong></h4> 
                 <p> {props.city}, {props.street} </p>
 
-                <button className={props.liked === "Like" ? "LikeButtonActive" : "LikeButtonNotActive"} key={props.id}
-                    onClick={props.favorites}
-                >  {props.liked}</button>
+                <button className={props.likedBtn === "Like" ? "LikeButtonActive" : "LikeButtonNotActive"} key={props.id}
+                    onClick={props.liked}
+                > {props.likedBtn}</button>
             </div>
    
     )

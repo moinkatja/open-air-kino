@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Router from "./Components/Router/Router";
+import App from "./App";
 
 
 ReactDOM.render(
   <React.StrictMode>
-
-    <Router />
+    <Router>
+      <App />
+    </Router>
 
   </React.StrictMode>,
 

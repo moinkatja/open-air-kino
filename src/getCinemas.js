@@ -14,7 +14,6 @@ function getCinemas(region) {
     .then(response => {
       return Promise.resolve(response.json())
     })
-
 }
 
 export { getCinemas };

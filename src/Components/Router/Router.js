@@ -12,25 +12,28 @@ function RouterFile() {
           exact path="/"
           render={() => (
             <App tab="cinemas" />
+          )}
+        />
+
+        <Route
+          exact path="/:tab(cinemas|favorites|city)"
+          render={({ match }) => (
+            <App
+              tab={match.params.tab}
+              path={match}
+            />
           )} />
 
         <Route
-          exact path="/:tab(cinemas|favorites)/:cinemaId?"
-          render={(match) => (
+          exact path="/:tab(cinemas|favorites|city)/:cinemaId?"
+          render={({ match }) => (
             <App
-              cinemaId={match.match.params.cinemaId}
-              tab={match.match.params.tab}
-              path={match.match}
+              cinemaId={match.params.cinemaId}
+              tab={match.params.tab}
+              path={match}
             />
           )} />
-         <Route
-          eaxct path="/:tab(cinemas|favorites)"
-          render={(match) => (
-            <App
-              tab={match.match.params.tab}
-              path={match.match}
-            />
-          )} /> 
+
         {/* <Route
           exact path="/cinemas"
           render={() => (

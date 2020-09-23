@@ -1,31 +1,39 @@
+
 .Header {
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-    min-width: 350px;
+
+margin: 0 auto;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
 }
 
 .Logo {
     width: 50px;
-    position: absolute;
-    margin-left: -150px;
-    margin-top: 1rem;
+    margin-top: .7rem;
     float: left;
     padding: 5px;
+    position: absolute;
+    margin-left: -150px;
+
 }
 
 .Title {
-    margin-top: 1.8rem;
-    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 @media (max-width: 800px) {
     .Header {
         width: 100%;
-        min-width: 100%;
     }
 
     .Title {
         margin-bottom: .5rem;
+        color: white;
+    }
+
+    .Logo {
+        margin-left: -150px;
     }
 }
