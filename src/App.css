@@ -9,29 +9,24 @@
   background-repeat: no-repeat; 
   background-size: cover;
   height: 100vh;
+  width: 100vw;
   opacity: 0.8;
   display: flex;
+  flex-direction: column;
 }
 
 .Container {
   background-color: white;
-  margin: 0 auto;
-  padding-left: 10px;
   width: 90%;
+  height: 100%;
   min-width: 750px;
-  min-height: 600px;
-  max-height: 1000px;
-  height: 90%;
-  align-items: start;
-  justify-content: left;
+  max-height: 1300px;
   align-self: center;
   opacity: 0.9;
-  border-radius: 10px;
-  display: grid;
-  grid-template-rows: 10% 80% 10%;
-  grid-template-columns: 50% 50%;
   z-index: 1;
-}
+  display: flex;
+  flex-direction: column;
+} 
 
 h1 {
   color: #009688;
@@ -156,14 +151,8 @@ p {
     font-size: .8rem;
   }
 
-  .Container {
-    min-width: 450px;
-    grid-template-columns: 40% 60%;
-  }
-
   .ResultButton {
     height: 100px;
-
   }
 
   .ResultButtonActive {
@@ -180,12 +169,10 @@ p {
  
   .LikeButtonActive {
     float: none;
-
   }
 
   .LikeButtonNotActive {
     float: none;
-    
   }
 
   .KinoThumbnail {
@@ -197,17 +184,15 @@ p {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
   .App {
     background: white;
+    height: 100%;
   }
 
   .Container {
-    border-radius: 0;
     height: 100%;
-    min-height: 100%;
-    max-height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -255,6 +240,10 @@ p {
 
   .LikeButtonNotActive {
     float: right;
+  }
+
+  footer {
+    background-color: white;
   }
 }
 

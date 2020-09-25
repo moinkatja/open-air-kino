@@ -4,7 +4,6 @@ import '../../CinemaProfile/CinemaProfile';
 function Result(props) {
     
     return (
-       
             <div
                 className={props.id === props.selectedCinema? "ResultButtonActive" : "ResultButton"}
                 id={props.id}
@@ -14,12 +13,10 @@ function Result(props) {
                     src={props.pic} alt="Kino Thumbnail" />
                 <h4><strong>{props.name}</strong></h4> 
                 <p> {props.city}, {props.street} </p>
-
-                <button className={props.likedBtn === "Like" ? "LikeButtonActive" : "LikeButtonNotActive"} key={props.id}
-                    onClick={props.liked}
-                > {props.likedBtn}</button>
+                <button className={props.likeBtn === "Like" ? "LikeButtonActive" : "LikeButtonNotActive"} key={props.id}
+                    onClick={props.clickedLike}
+                > {props.likeBtn}</button>
             </div>
-   
     )
 }
 

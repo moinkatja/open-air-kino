@@ -1,6 +1,6 @@
 import API_ENDPOINT from "./config";
 
-function getCinemas(region) {
+const getCinemas = (region) => {
 
   const options = {
     method: 'GET',

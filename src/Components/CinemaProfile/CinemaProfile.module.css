@@ -4,16 +4,17 @@
 
 .CinemaProfile {
     padding-top: 1rem;
+    margin-left: 1rem;
     background-color: white;
     border: 1px #bdbdbd solid;
-    height: 95%;
+    height: 100%;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px #757575;
     margin-left: 1rem;
-    margin-right: 2rem;
-    grid-column-start: 2;
-    grid-column-end: 4;
-  
+    margin-right: 2.2rem;
+    min-width: 300px;
+    max-height: 900px;
+   
 }
 
 .CinemaPicture {
@@ -21,17 +22,17 @@
     border-radius: 10px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
     .CinemaProfile {
-      width: 100%;
-      background-color: rgb(171, 231, 231);
-      height: 110%;
-      margin-top: 0;
-      border-radius: 0;
-      margin-left: 0;
-      margin-right: 0;
-      padding-bottom:2rem;
+        background-color: rgb(171, 231, 231);
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        border-radius: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding-bottom:2rem;
     }
 
     .CinemaPicture {

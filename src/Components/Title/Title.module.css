@@ -1,10 +1,9 @@
-
 .Header {
-
-margin: 0 auto;
+    margin: 0 auto;
     width: 100%;
     grid-column-start: 1;
     grid-column-end: 3;
+    margin-bottom: .5rem;
 
 }
 
@@ -23,7 +22,7 @@ margin: 0 auto;
     margin-bottom: 1.5rem;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .Header {
         width: 100%;
     }

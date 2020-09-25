@@ -36,9 +36,9 @@ select option {
 }
 
 @media (max-width: 350px) {
+
     .SelectField {
         width: 180px;
         font-size: .8rem;
-        margin-top: 1rem; 
     }
 }

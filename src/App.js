@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import "./App.css";
-import CinemaContainer from "../src/Components/CinemaContainer/CinemaContainer";
+import CinemaMainForm from "./Components/CinemaMainFrom/CinemaMainForm";
 import Modal from "./Components/Modal/Modal";
 import { getCinemas } from "./getCinemas";
 import SAMPLE_ARRAY from "./sampledata";
@@ -21,7 +21,6 @@ class App extends Component {
   componentDidMount() {
 
     this._isMounted = true;
-
     this.setState({
       loading: true,
     });
@@ -32,7 +31,6 @@ class App extends Component {
           this.setState({
             cinemas: data,
             loading: false,
-
           });
       })
       .catch(err => {
@@ -55,20 +53,21 @@ class App extends Component {
   }
 
   render() {
+
     return (
-      <Fragment>
+      <section className="App">
         <Modal
           show={this.state.error ? true : false}
           errorMessage={this.state.error}
           modalClosed={this.clearError}
         />
-        <CinemaContainer
+        <CinemaMainForm
           loading={this.state.loading}
           cinemas={this.state.cinemas}
           tab={this.props.tab}
           cinemaId={this.props.cinemaId}
         />
-      </Fragment>
+      </section>
     )
   }
 }
