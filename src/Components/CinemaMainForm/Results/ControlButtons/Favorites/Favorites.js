@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Favorites.module.css';
-import liked from "../../../img/liked.png";
-import notliked from "../../../img/notliked.png";
+import liked from "../../../../../img/liked.png";
+import notliked from "../../../../../img/notliked.png";
 import { NavLink } from 'react-router-dom';
 
 class Favorites extends Component {

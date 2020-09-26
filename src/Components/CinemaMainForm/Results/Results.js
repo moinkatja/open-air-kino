@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Result from "./Result/Result";
 import Pagination from "./Pagination/Pagination";
-import CinemaProfile from "../CinemaProfile/CinemaProfile";
-import WelcomePage from "../WelcomePage/WelcomePage";
+import CinemaProfile from "./CinemaProfile/CinemaProfile";
+import WelcomePage from "./WelcomePage/WelcomePage";
 import { NavLink } from "react-router-dom";
-import { getFavs, getCinemaRegion, getCinemaDetails, calculateCurrentPage, getResultsPerPage } from "../../services";
-import ControlButtons from "../ControlButtons/ControlButtons"
+import { getFavs, getCinemaRegion, getCinemaDetails, getResultsPerPage } from "../../../services";
+import ControlButtons from "./ControlButtons/ControlButtons"
 
 import classes from "./Results.module.css";
 
@@ -163,7 +163,6 @@ class Results extends Component {
                     <ControlButtons
                         favorites={this.state.favorites}
                         cinemas={this.props.cinemas}
-                        selectedCinema={cinemaDetails}
                         clickedHomeBtn={this.goHome}
                         clickedFavBtn={this.showFavorites.bind(this)}
                         getRegion={this.getRegion}

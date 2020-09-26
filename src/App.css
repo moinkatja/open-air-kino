@@ -2,30 +2,6 @@
   box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
-  background: url("../src/img/cinema.jpg");
-  background-position: center 100%; 
-  background-repeat: no-repeat; 
-  background-size: cover;
-  height: 100vh;
-  opacity: 0.8;
-  display: flex;
-  flex-direction: column;
-}
-
-.Container {
-  background-color: white;
-  width: 90%;
-  height: 100%;
-  min-width: 750px;
-  align-self: center;
-  opacity: 0.9;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;;
-} 
-
 h1 {
   color: #009688;
   font-size: 1.8rem;
@@ -38,151 +14,52 @@ p {
   font-size: 1rem;
 }
 
-.ResultButton {
-  padding: 5px;
-  width: 90%;
-  height: 110px;
-  border: 15x dotted grey;
-  margin: 5px auto;
-  background-color: #70e7dd;
-  opacity: 0.9;
-  border-radius: 10px;
-  cursor: pointer;
+.App {
+  background: url("../src/img/cinema.jpg");
+  background-position: center 100%; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  height: 100vh;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  color: rgb(37, 43, 43);
-  transition: 0.3s ease-in-out;
-  max-width: 500px;
 }
 
-.ResultButtonActive {
-  padding: 5px;
-  width: 90%;
-  height: 110px;
-  border: 1px solid #70e7dd;
-  margin: 5px auto; 
-  background-color: teal;
-  color: white;
-  opacity: 0.9;
-  border-radius: 10px; 
-  cursor: not-allowed;
-  text-align: center; 
-  max-width: 500px;
-}
-
-.ResultButton:hover {
-  background-color: rgb(131, 109, 168);
-  color: white;
-}
-
-.KinoThumbnail {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  float: left;
-  filter: grayscale();
-  margin-top: 10px;
-  margin-left: 3rem;
-}
-
-.KinoThumbnailActive {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  margin-top: 10px;
-  float: left;
-  margin-left: 3rem;
-}
-
-.LikeButtonActive {
-  float: right;
-  margin-top: -3rem;
-  width: 50px;
+.Container {
   background-color: white;
-  color: green;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: .4rem;
-}
-
-.LikeButtonNotActive {
-  float: right;
-  margin-top: -3rem;
-  width: 50px;
-  background-color: rgb(97, 25, 69);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: .4rem;
-}
-
-.PageNumberActive {
-  list-style-type: none;
-  width: 20px;
-  padding: 5px;
-  margin: 3px;
-  background-color: rgb(42, 146, 146);
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
-}
-
-.PageNumberNotActive {
-  list-style-type: none;
-  width: 20px;
-  padding: 5px;
-  margin: 3px;
-  background-color: rgb(193, 197, 197);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-
-.PageNumberNotActive:hover {
-  background-color:rgb(42, 146, 146);
-  color: white;
-}
+  height: 100%;
+  width: 90%;
+  min-width: 750px;
+  align-self: center;
+  opacity: 0.9;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+} 
 
 @media (max-width: 1200px) {
+
   h4 {
     font-size: .8rem;
   }
-
-  .ResultButton {
-    height: 100px;
-  }
-
-  .ResultButtonActive {
-    height: 100px;
-  }
-
-  .ResultButton p{
-    display: none;
-  } 
-
-  .ResultButtonActive p {
-    display: none;
-  }
- 
-  .LikeButtonActive {
-    float: none;
-  }
-
-  .LikeButtonNotActive {
-    float: none;
-  }
-
-  .KinoThumbnail {
-    margin-left: 1rem;
-  }
-
-  .KinoThumbnailActive {
-    margin-left: 1rem;
-  }
+  
 }
 
+
 @media (max-width: 1000px) {
+
+  h1 {
+    margin-left: 0;
+    text-align: center;
+    margin-top: 1rem;
+    margin-right: 0;
+    padding:0;
+  }
+  
+  h4 {
+    font-size: .8rem;
+  }
 
   .App {
     background: white;
@@ -199,68 +76,5 @@ p {
     background: url("../src/img/cinema.jpg");
     /*background-color: rgb(171, 231, 181);*/
   }
-
-  h1 {
-    margin-left: 0;
-    text-align: center;
-    margin-top: 1rem;
-    margin-right: 0;
-    padding:0;
-  }
-  
-  h4 {
-    font-size: .8rem;
-  }
-
-  .ResultButton p{
-    padding: 5px;
-    display: block;
-    font-size: .8rem;
-  } 
-
-  .ResultButtonActive p {
-    padding: 5px;
-    display:block;
-    font-size: .8rem;
-  }
-
-  .KinoThumbnail {
-   margin-left: 2rem;
-  }
-
-  .KinoThumbnailActive {
-    margin-left: 2rem;
-  }
-
-  .LikeButtonActive {
-    float: right;
-  }
-
-  .LikeButtonNotActive {
-    float: right;
-  }
-
-  footer {
-    background-color: white;
-  }
-}
-
-
-@media (max-width: 420px) {
-  .ResultButton p{
-    display: none;
-  } 
-
-  .ResultButtonActive p {
-    display: none;
-  }
-  
-  .LikeButtonActive {
-    float: none;
-  }
-
-  .LikeButtonNotActive {
-    float: none;
-}
 
 }

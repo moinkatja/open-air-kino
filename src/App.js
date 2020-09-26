@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./App.css";
-import CinemaMainForm from "./Components/CinemaMainFrom/CinemaMainForm";
-import Modal from "./Components/Modal/Modal";
+import CinemaMainForm from "./Components/CinemaMainForm/CinemaMainForm";
+import Modal from "./Components/UI/Modal/Modal";
 import { getCinemas } from "./getCinemas";
 import SAMPLE_ARRAY from "./sampledata";
 

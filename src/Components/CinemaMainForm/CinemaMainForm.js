@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Title from "../Title/Title";
-import Results from "../Results/Results";
-import Spinner from "../Spinner/Spinner";
-import Footer from "../Footer/Footer";
+import Title from "./Title/Title";
+import Results from "./Results/Results";
+import Spinner from "../UI/Spinner/Spinner";
+import Footer from "./Footer/Footer";
 
 class CinemaMainForm extends Component {
-
     render() {
         return (
             <div className="Container">

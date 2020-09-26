@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 .CinemaProfile {
     padding-top: 1rem;
     margin-left: 1rem;
@@ -13,8 +9,13 @@
     margin-left: 1rem;
     margin-right: 2.2rem;
     min-width: 300px;
-    max-height: 900px;
-   
+    max-height: 1000px;
+}
+
+.CinemaProfile h2 {
+    color: rgb(88, 62, 99);
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
 }
 
 .CinemaPicture {
@@ -32,7 +33,7 @@
         border-radius: 0;
         margin-left: 0;
         margin-right: 0;
-        padding-bottom:2rem;
+        padding-bottom: 2rem;
     }
 
     .CinemaPicture {

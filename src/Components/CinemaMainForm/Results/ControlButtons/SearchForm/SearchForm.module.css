@@ -4,7 +4,6 @@
 }
 
 .SelectField {
-   
     font-size: 1rem;
     height: 2.5rem;
     background-color: #52dfd2;
@@ -36,7 +35,6 @@ select option {
 }
 
 @media (max-width: 350px) {
-
     .SelectField {
         width: 180px;
         font-size: .8rem;

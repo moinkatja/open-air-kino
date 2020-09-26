@@ -21,7 +21,6 @@ function ControlButtons(props) {
 
             <Favorites
                 favorites={props.favorites}
-                selectedCinema={props.selectedCinema}
                 cinemas={props.cinemas}
                 clickedFavBtn={props.clickedFavBtn}
             />

@@ -11,7 +11,7 @@ const Pagination = (props) => {
 
     const renderPageNumbers = pageNumbers.map(number => {
         return (
-            <li className={(props.currentPage === number ? 'PageNumberActive' : 'PageNumberNotActive')}
+            <li className={props.currentPage === number ? classes.PageNumber : [classes.PageNumber, classes.PageNumber_NotActive].join(" ")}
                 key={number}
                 id={number}
                 onClick={props.clickedPage}

@@ -1,0 +1,32 @@
+.ControlButtons {
+    display: flex;
+    padding-top: .5rem;
+    justify-self: flex-start;
+    padding: 5px;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.FavsTitle {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0.2rem;
+    margin-top: .8rem; 
+    margin-right: 1rem;
+    color: rgb(103, 73, 116);
+}
+
+@media (max-width: 800px) {
+  .ControlButtons {
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    height: 3rem;
+    padding-top: .2rem;
+  }
+}
+    

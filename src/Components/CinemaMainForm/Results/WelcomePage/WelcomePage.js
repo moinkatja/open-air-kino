@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './WelcomePage.module.css';
-import PopCorn from "../../img/popcorn.png";
+import PopCorn from "../../../../img/popcorn.png";
 
 function WelcomePage() {
     return (

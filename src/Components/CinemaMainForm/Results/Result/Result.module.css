@@ -1,0 +1,105 @@
+.ResultButton {
+    padding: 5px;
+    width: 90%;
+    height: 110px;
+    margin: 5px auto;
+    opacity: 1;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    max-width: 500px;
+}
+
+.ResultButton_NotActive {
+    border: 1px dotted teal;
+    background-color: #80dfd7;
+    color: rgb(56, 58, 58);
+    cursor: pointer;
+}
+
+.ResultButton_Active {
+    border: 1px solid #70e7dd;
+    background-color: teal;
+    color: white;
+    cursor: not-allowed;
+}
+
+.ResultButton_NotActive:hover {
+    background-color: rgb(131, 109, 168);
+    color: white;
+}
+
+.KinoThumbnail {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 2rem;
+}
+
+.KinoThumbnail_NotActive {
+    filter: grayscale();
+}
+
+.LikeButton {
+    float: right;
+    margin-top: -3rem;
+    width: 50px;
+    background-color: white;
+    color: green;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: .3rem;
+}
+
+.LikeButton_NotActive {
+    background-color: rgb(97, 25, 69);
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .ResultButton {
+        height: 100px;
+    }
+
+    .ResultButton p{
+        display: none;
+    } 
+
+    .LikeButton {
+        float: none;
+    }
+
+    .KinoThumbnail {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .ResultButton p {
+        padding: 5px;
+        display: block;
+        font-size: .8rem;
+    } 
+
+    .KinoThumbnail {
+        margin-left: 2rem;
+    }
+
+    .LikeButton {
+        float: right;
+    }
+}
+
+@media (max-width: 420px) {
+    .ResultButton p {
+        display: none;
+    } 
+
+    .LikeButton {
+        float: none;
+    }
+}
+  
