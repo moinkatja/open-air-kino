@@ -4,13 +4,12 @@ import Pagination from "./Pagination/Pagination";
 import CinemaProfile from "./CinemaProfile/CinemaProfile";
 import WelcomePage from "./WelcomePage/WelcomePage";
 import { NavLink } from "react-router-dom";
-import { getFavs, getCinemaRegion, getCinemaDetails, getResultsPerPage } from "../../../services";
+import { getFavs, getCinemaRegion, getCinemaDetails, getResultsPerPage, calculateCurrentPage } from "../../../services";
 import ControlButtons from "./ControlButtons/ControlButtons"
 
 import classes from "./Results.module.css";
 
 class Results extends Component {
-    _isMounted = false;
     constructor(props) {
         super(props);
 
@@ -18,25 +17,32 @@ class Results extends Component {
             favorites: [],
             displayedCinemas: [],
             selectedCinema: null,
-            currentPage: 1,
-            resultsPerPage: null,
+            currentPage: null,
+            resultsPerPage: 5,
         };
     }
 
     componentDidMount() {
-        this._isMounted = true;
         const getFavs = JSON.parse(localStorage.getItem("favorites")) || "[]";
 
         this.setState({
             favorites: getFavs,
             displayedCinemas: this.props.cinemas,
-            currentPage: 1,
         });
 
-        this.props.cinemaId ? this.setState({ selectedCinema: this.props.cinemaId }) : this.setState({ selectedCinema: null });
 
         this.getPagination();
         window.addEventListener("resize", this.getPagination.bind(this));
+
+        (this.props.tab === "cinemas" || this.props.tab === "favorites") && (getCinemaDetails(this.props.cinemas, this.props.cinemaId)) ?
+            this.setState({
+                selectedCinema: this.props.cinemaId,
+                currentPage: calculateCurrentPage(this.props.cinemaId, this.state.resultsPerPage)
+            }) :
+            this.setState({
+                selectedCinema: null,
+                currentPage: 1
+            });
     }
 
     goHome = () => {
@@ -47,6 +53,15 @@ class Results extends Component {
         })
     }
 
+    //Pagination depending on the screen size
+
+    getPagination = () => {
+        this.setState({
+            resultsPerPage: getResultsPerPage()
+        });
+    }
+
+
     //Handler for dropdown with regions
 
     getRegion = (e) => {
@@ -55,14 +70,13 @@ class Results extends Component {
 
         if (region === "") {
             this.setState({
-                loading: false,
                 displayedCinemas: this.props.cinemas,
                 currentPage: 1,
+                selectedCinema: this.props.cinemas[0].id,
             })
         }
         else {
             this.setState({
-                loading: false,
                 displayedCinemas: getCinemaRegion(this.props.cinemas, region),
                 currentPage: 1,
                 selectedCinema: getCinemaRegion(this.props.cinemas, region)[0].id,
@@ -79,13 +93,6 @@ class Results extends Component {
         });
     }
 
-    //Pagination depending on the screen size
-
-    getPagination = () => {
-        this.setState({
-            resultsPerPage: getResultsPerPage()
-        });
-    }
 
     handlePageClick = (e) => {
         e.preventDefault();
@@ -100,14 +107,15 @@ class Results extends Component {
     addFavorite = (id) => {
         if (!this.state.favorites.includes(id)) {
             this.setState({
-                favorites: [...this.state.favorites, id]
+                favorites: [...this.state.favorites, id],
             })
         }
+
         else {
             this.setState({
                 favorites: this.state.favorites.filter(function (cinema) {
                     return cinema !== id
-                })
+                }),
             })
         }
     }
@@ -117,6 +125,7 @@ class Results extends Component {
     showFavorites = () => {
         this.setState({
             currentPage: 1,
+            selectedCinema: getFavs(this.props.cinemas, this.state.favorites)[0].id,
         });
     }
 
@@ -128,35 +137,37 @@ class Results extends Component {
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.getPagination.bind(this));
-        this._isMounted = false;
     }
 
     render() {
+
         let cinemasToDisplay;
         let cinemaDetails;
 
-        this.props.cinemaId ?
-            cinemaDetails = getCinemaDetails(this.props.cinemas, this.props.cinemaId) :
-            cinemaDetails = getCinemaDetails(this.props.cinemas, this.state.selectedCinema);
 
         switch (this.props.tab) {
             case "favorites": {
                 cinemasToDisplay = getFavs(this.props.cinemas, this.state.favorites)
-                if (this.state.favorites.includes(this.props.cinemaId) === false){ cinemaDetails = null }
+                this.state.favorites.includes(this.props.cinemaId) ?
+                    cinemaDetails = getCinemaDetails(this.props.cinemas, this.props.cinemaId) :
+                    cinemaDetails = null;
                 break;
             }
-            default: cinemasToDisplay = this.state.displayedCinemas;
+            default: {
+                cinemasToDisplay = this.state.displayedCinemas;
+                this.props.cinemaId ?
+                    cinemaDetails = getCinemaDetails(this.props.cinemas, this.props.cinemaId) :
+                    cinemaDetails = getCinemaDetails(this.props.cinemas, this.state.selectedCinema);
+            }
         }
-
-       /*  let currentPage;
-        this.props.cinemaId ? currentPage = calculateCurrentPage(this.props.cinemaId, this.state.resultsPerPage) :
-        currentPage = this.state.currentPage; */
 
         let indexOfLastResult = this.state.currentPage * this.state.resultsPerPage;
         let indexOfFirstResult = indexOfLastResult - this.state.resultsPerPage;
         let currentResult = cinemasToDisplay.slice(indexOfFirstResult, indexOfLastResult);
 
-        // : (this.props.cinemaId ? getFavs(this.state.cinemasInitial, this.props.cinemaId):  this.state.cinemas)
+        console.log(cinemaDetails)
+        console.log(this.state.selectedCinema)
+
         return (
             <section className={classes.CinemaApp}>
                 <div className={classes.Results}>
@@ -175,12 +186,12 @@ class Results extends Component {
                                 to={`/${this.props.tab}/${cinema.id}`} >
                                 <Result
                                     selectedCinema={this.state.selectedCinema}
+                                    key={id}
+                                    id={cinema.id}
                                     name={cinema.name}
                                     tel={cinema.tel}
                                     street={cinema.street}
                                     city={cinema.city}
-                                    id={cinema.id}
-                                    key={id}
                                     pic={cinema.pic}
                                     clickedResult={this.changeActiveCinema.bind(this)}
                                     clickedLike={() => this.addFavorite.bind(this)(cinema.id)}

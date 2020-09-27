@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import classes from './SearchForm.module.css';
 import {  NavLink } from 'react-router-dom'
 
-
 class SearchForm extends Component {
 
     render() {

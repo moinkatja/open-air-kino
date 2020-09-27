@@ -19,19 +19,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     this._isMounted = true;
+
     this.setState({
       loading: true,
     });
 
     getCinemas("")
       .then(data => {
-        if (data)
+        if (this._isMounted) {
           this.setState({
             cinemas: data,
             loading: false,
           });
+        }
       })
       .catch(err => {
         this.setState({
