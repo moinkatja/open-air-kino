@@ -30,11 +30,10 @@ class Results extends Component {
             displayedCinemas: this.props.cinemas,
         });
 
-
         this.getPagination();
         window.addEventListener("resize", this.getPagination.bind(this));
 
-        (this.props.tab === "cinemas" || this.props.tab === "favorites") && (getCinemaDetails(this.props.cinemas, this.props.cinemaId)) ?
+        (this.props.tab === "cinemas") && (getCinemaDetails(this.props.cinemas, this.props.cinemaId)) ?
             this.setState({
                 selectedCinema: this.props.cinemaId,
                 currentPage: calculateCurrentPage(this.props.cinemaId, this.state.resultsPerPage)
@@ -141,32 +140,29 @@ class Results extends Component {
 
     render() {
 
-        let cinemasToDisplay;
-        let cinemaDetails;
-
+        let cinemasToDisplay; // Main results 
+        let cinemaDetails; // Details 
 
         switch (this.props.tab) {
             case "favorites": {
-                cinemasToDisplay = getFavs(this.props.cinemas, this.state.favorites)
+                cinemasToDisplay = getFavs(this.props.cinemas, this.state.favorites);
                 this.state.favorites.includes(this.props.cinemaId) ?
-                    cinemaDetails = getCinemaDetails(this.props.cinemas, this.props.cinemaId) :
-                    cinemaDetails = null;
+                    this.state.selectedCinema = this.props.cinemaId :
+                    this.state.selectedCinema = null
+                if (this.state.favorites.length <= this.state.resultsPerPage) this.state.currentPage = 1;
                 break;
             }
             default: {
                 cinemasToDisplay = this.state.displayedCinemas;
-                this.props.cinemaId ?
-                    cinemaDetails = getCinemaDetails(this.props.cinemas, this.props.cinemaId) :
-                    cinemaDetails = getCinemaDetails(this.props.cinemas, this.state.selectedCinema);
+                if (!this.state.selectedCinema) this.state.selectedCinema = this.props.cinemaId;
             }
         }
+
+        cinemaDetails = getCinemaDetails(this.props.cinemas, this.state.selectedCinema);
 
         let indexOfLastResult = this.state.currentPage * this.state.resultsPerPage;
         let indexOfFirstResult = indexOfLastResult - this.state.resultsPerPage;
         let currentResult = cinemasToDisplay.slice(indexOfFirstResult, indexOfLastResult);
-
-        console.log(cinemaDetails)
-        console.log(this.state.selectedCinema)
 
         return (
             <section className={classes.CinemaApp}>

@@ -11,7 +11,7 @@ export const getCinemaDetails = (cinemas, id) => {
 }
 
 export const calculateCurrentPage = (id, resultsPerPage) => {
-    return  Math.floor((id / resultsPerPage)+1)
+    return  Math.floor((id / resultsPerPage) + 1 )
 }
 
 export const getResultsPerPage = () => {
