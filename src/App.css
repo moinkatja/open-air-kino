@@ -6,7 +6,6 @@ h1 {
   color: #009688;
   font-size: 1.8rem;
   font-weight: normal;
-  z-index: 2;
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -14,38 +13,60 @@ p {
   font-size: 1rem;
 }
 
-.App {
-  background: url("../src/img/cinema.jpg");
-  background-position: center 100%; 
-  background-repeat: no-repeat; 
-  background-size: cover;
+.CinemaApp {
+  margin: 0 auto;
   height: 100vh;
-  opacity: 0.8;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.Container {
-  background-color: white;
-  height: 100%;
-  width: 90%;
+  width: 90vw;
+  max-height: 100%;
+  min-height: 100vh;
   min-width: 750px;
+  background-color: white;
   align-self: center;
   opacity: 0.9;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns:  50% 50%;
+  grid-template-rows: 10% 80% 10%;
 } 
+
+.DetailsPage {
+  padding-top: 1rem;
+  margin-left: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: 2rem;
+  background-color: white;
+  border: 1px #dfdfdf solid;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px #a7a7a7; 
+  min-width: 300px;
+  justify-content: center;
+  max-height: 800px;
+  opacity: 1;
+}
+
+.DetailsPage li {
+  padding-bottom: 1rem;
+}
+
+.DetailsPage h2 {
+  color: rgb(88, 62, 99);
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+}
+
 
 @media (max-width: 1200px) {
 
   h4 {
     font-size: .8rem;
   }
+
+  .CinemaApp {
+    grid-template-columns: 40% 60%;
+  }
   
 }
-
 
 @media (max-width: 1000px) {
 
@@ -54,27 +75,39 @@ p {
     text-align: center;
     margin-top: 1rem;
     margin-right: 0;
-    padding:0;
-  }
-  
-  h4 {
-    font-size: .8rem;
+    padding: 0;
   }
 
-  .App {
-    background: white;
-    height: 100%;
-  }
-
-  .Container {
+  .CinemaApp{
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-left: 0;
     min-width: 100%;
     background: url("../src/img/cinema.jpg");
-    /*background-color: rgb(171, 231, 181);*/
+  }
+
+  .DetailsPage {
+    background-color: rgb(171, 231, 231);
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 2rem;
+
+  }
+
+  .DetailsPage h1 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .DetailsPage h2 {
+    margin-top: 1rem;
+    font-size: 1.4rem;
   }
 
 }

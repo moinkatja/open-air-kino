@@ -1,6 +1,7 @@
 .SearchForm {
     width: 100%;
     text-align: left;
+    margin-top: -1rem;
 }
 
 .SelectField {
@@ -24,10 +25,6 @@ select option {
 
 
 @media (max-width: 800px) {
-   .SearchForm{
-        margin: 0 auto;
-    
-     }
      .SelectField {
         width: 200px;
         height: 2rem;

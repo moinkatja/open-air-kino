@@ -13,18 +13,3 @@ export const getCinemaDetails = (cinemas, id) => {
 export const calculateCurrentPage = (id, resultsPerPage) => {
     return  Math.floor((id / resultsPerPage) + 1 )
 }
-
-export const getResultsPerPage = () => {
-    let results;
-    if (window.innerHeight > "1300") {
-        results = 8;
-    }
-    else if (window.innerHeight > "1200") {
-        results = 7;
-    }
-    else if (window.innerHeight > "900") {
-        results = 6;
-    }
-    else results = 5;
-    return results;
-}

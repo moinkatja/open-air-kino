@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import "./App.css";
 import CinemaMainForm from "./Components/CinemaMainForm/CinemaMainForm";
 import Modal from "./Components/UI/Modal/Modal";
@@ -56,7 +56,7 @@ class App extends Component {
   render() {
 
     return (
-      <section className="App">
+      <Fragment>
         <Modal
           show={this.state.error ? true : false}
           errorMessage={this.state.error}
@@ -68,7 +68,7 @@ class App extends Component {
           tab={this.props.tab}
           cinemaId={this.props.cinemaId}
         />
-      </section>
+      </Fragment>
     )
   }
 }

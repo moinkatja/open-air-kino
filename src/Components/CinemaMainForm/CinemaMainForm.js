@@ -7,7 +7,7 @@ import Footer from "./Footer/Footer";
 class CinemaMainForm extends Component {
     render() {
         return (
-            <div className="Container">
+            <section className="CinemaApp">
                 <Title />
                 {this.props.loading ? <Spinner /> :
                     <Results
@@ -18,7 +18,7 @@ class CinemaMainForm extends Component {
                     />
                 }
                 <Footer />
-            </div>
+            </section>
         )
     }
 }

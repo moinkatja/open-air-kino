@@ -3,7 +3,7 @@
     width: 90%;
     height: 110px;
     margin: 5px auto;
-    opacity: 1;
+    opacity: 0.95;
     border-radius: 10px;
     text-align: center;
     transition: 0.3s ease-in-out;
@@ -36,10 +36,11 @@
     float: left;
     margin-top: 10px;
     margin-left: 2rem;
+    opacity: 0.8;
 }
 
 .KinoThumbnail_NotActive {
-    filter: grayscale();
+    filter: grayscale(1);
 }
 
 .LikeButton {
@@ -55,7 +56,7 @@
 }
 
 .LikeButton_NotActive {
-    background-color: rgb(97, 25, 69);
+    background-color: rgb(88, 62, 99);
     color: white;
 }
 
@@ -86,6 +87,7 @@
 
     .KinoThumbnail {
         margin-left: 2rem;
+        margin-top: 5px;
     }
 
     .LikeButton {

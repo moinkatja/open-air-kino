@@ -5,7 +5,7 @@ class CinemaProfile extends Component {
 
     render() {
         return (
-            <div className={classes.CinemaProfile}>
+            <div className="DetailsPage">
                 <h2>{this.props.cinemaDetails.name}</h2>
                 <p><strong>{this.props.cinemaDetails.region}</strong></p>
                 <p> {this.props.cinemaDetails.postcode} {this.props.cinemaDetails.city}, {this.props.cinemaDetails.street}</p>

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Result from "./Result/Result";
 import Pagination from "./Pagination/Pagination";
 import CinemaProfile from "./CinemaProfile/CinemaProfile";
 import WelcomePage from "./WelcomePage/WelcomePage";
 import { NavLink } from "react-router-dom";
-import { getFavs, getCinemaRegion, getCinemaDetails, getResultsPerPage, calculateCurrentPage } from "../../../services";
+import { getFavs, getCinemaRegion, getCinemaDetails, calculateCurrentPage } from "../../../services";
 import ControlButtons from "./ControlButtons/ControlButtons"
 
 import classes from "./Results.module.css";
@@ -30,9 +30,6 @@ class Results extends Component {
             displayedCinemas: this.props.cinemas,
         });
 
-        this.getPagination();
-        window.addEventListener("resize", this.getPagination.bind(this));
-
         (this.props.tab === "cinemas") && (getCinemaDetails(this.props.cinemas, this.props.cinemaId)) ?
             this.setState({
                 selectedCinema: this.props.cinemaId,
@@ -51,15 +48,6 @@ class Results extends Component {
             currentPage: 1,
         })
     }
-
-    //Pagination depending on the screen size
-
-    getPagination = () => {
-        this.setState({
-            resultsPerPage: getResultsPerPage()
-        });
-    }
-
 
     //Handler for dropdown with regions
 
@@ -134,12 +122,9 @@ class Results extends Component {
         localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
     }
 
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.getPagination.bind(this));
-    }
-
     render() {
-
+        let activeCinema = this.state.selectedCinema;
+        let currentPage = this.state.currentPage;
         let cinemasToDisplay; // Main results 
         let cinemaDetails; // Details 
 
@@ -147,26 +132,28 @@ class Results extends Component {
             case "favorites": {
                 cinemasToDisplay = getFavs(this.props.cinemas, this.state.favorites);
                 this.state.favorites.includes(this.props.cinemaId) ?
-                    this.state.selectedCinema = this.props.cinemaId :
-                    this.state.selectedCinema = null
-                if (this.state.favorites.length <= this.state.resultsPerPage) this.state.currentPage = 1;
+                    activeCinema = this.props.cinemaId :
+                    activeCinema = this.state.favorites[0];
+                if (this.state.favorites.length <= this.state.resultsPerPage)
+                    currentPage = 1;
                 break;
             }
             default: {
                 cinemasToDisplay = this.state.displayedCinemas;
-                if (!this.state.selectedCinema) this.state.selectedCinema = this.props.cinemaId;
+                if (!this.state.selectedCinema)
+                    activeCinema = this.props.cinemaId;
             }
         }
 
-        cinemaDetails = getCinemaDetails(this.props.cinemas, this.state.selectedCinema);
+        cinemaDetails = getCinemaDetails(this.props.cinemas, activeCinema);
 
-        let indexOfLastResult = this.state.currentPage * this.state.resultsPerPage;
+        let indexOfLastResult = currentPage * this.state.resultsPerPage;
         let indexOfFirstResult = indexOfLastResult - this.state.resultsPerPage;
         let currentResult = cinemasToDisplay.slice(indexOfFirstResult, indexOfLastResult);
 
         return (
-            <section className={classes.CinemaApp}>
-                <div className={classes.Results}>
+            <Fragment>
+                <section className={classes.Results}>
                     <ControlButtons
                         favorites={this.state.favorites}
                         cinemas={this.props.cinemas}
@@ -181,7 +168,7 @@ class Results extends Component {
                             <NavLink key={id}
                                 to={`/${this.props.tab}/${cinema.id}`} >
                                 <Result
-                                    selectedCinema={this.state.selectedCinema}
+                                    selectedCinema={activeCinema}
                                     key={id}
                                     id={cinema.id}
                                     name={cinema.name}
@@ -204,16 +191,16 @@ class Results extends Component {
                         currentPage={this.state.currentPage}
                         resultsPerPage={this.state.resultsPerPage}
                     />
-                </div>
-                <div>
-                    {
-                        cinemaDetails ?
-                            <CinemaProfile
-                                cinemaDetails={cinemaDetails}
-                            /> : <WelcomePage />
-                    }
-                </div >
-            </section>
+                </section>
+
+                {
+                    cinemaDetails ?
+                        <CinemaProfile
+                            cinemaDetails={cinemaDetails}
+                        /> : <WelcomePage />
+                }
+
+            </Fragment>
         )
     }
 }

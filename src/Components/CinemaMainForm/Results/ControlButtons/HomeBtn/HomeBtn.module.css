@@ -1,5 +1,5 @@
 .HomeBtn {
-  margin-top: .3rem;
+  margin-top: -.7rem;
   margin-left: .2rem;
   padding-right: .2rem;
   height: 2.5rem;
@@ -19,7 +19,6 @@
   .HomeBtn {
     text-align: center;
     padding-right: 0;
-    margin-top: 0;
   }
 
   .HomeImg {
