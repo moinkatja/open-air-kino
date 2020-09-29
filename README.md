@@ -12,6 +12,7 @@ For this project I used:
 * Fetch API to get cinemas data
 * Local storage for saving the favorites
 * Dynamical dropdown with regions (depending on the data in the database)
+* React Router to correctly show cinemas and favorites depending on the route in the browser address field
 * If the backend is not avaliable, sample data will be shown. 
 * CSS Grid and Flexbox for styling
 * Jest for tests //in process
