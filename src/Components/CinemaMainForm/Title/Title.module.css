@@ -19,10 +19,25 @@
     margin-bottom: 1.5rem;
 }
 
+.GitHubLink {
+   position: absolute;
+   float: right;
+   margin-top: -65px;
+   margin-left: 100px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
 @media (max-width: 1000px) {
- 
     .Title {
         margin-bottom: .5rem;
         color: white;
+   
+    }
+
+    .GitHubLink {
+        margin-top: -50px;
     }
 }
