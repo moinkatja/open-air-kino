@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "db661e84f89c3d97f4661d2f3040c25d",
+    "revision": "12d47131c5ee55b114ad35860461aaec",
     "url": "/open-air-kino/index.html"
   },
   {
