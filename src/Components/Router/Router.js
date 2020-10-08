@@ -9,20 +9,20 @@ function RouterFile() {
     <Router history={history}>
       <Switch>
         <Route
-          exact path="/"
+          exact path="/open-air-kino"
           render={() => (
             <App tab="cinemas" />
           )}
         />
         <Route
-          exact path="/:tab(cinemas|favorites)/:cinemaId?"
+          exact path="/open-air-kino/:tab(cinemas|favorites)/:cinemaId?"
           render={({ match }) => (
             <App
               cinemaId={match.params.cinemaId}
               tab={match.params.tab}
             />
           )} />
-        <Redirect to="/" />
+        <Redirect to="/open-air-kino" />
       </Switch>
     </Router>
   )

@@ -166,7 +166,7 @@ class Results extends Component {
                     {(currentResult.length > 0) ?
                         currentResult.map((cinema, id) =>
                             <NavLink key={id}
-                                to={`/${this.props.tab}/${cinema.id}`} >
+                                to={`/open-air-kino/${this.props.tab}/${cinema.id}`} >
                                 <Result
                                     selectedCinema={activeCinema}
                                     key={id}

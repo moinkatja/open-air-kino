@@ -8,13 +8,13 @@ class SearchForm extends Component {
         let regionItems = this.props.cinemas.map((item) =>
             item.region);
         let dropdownOption = [...new Set(regionItems)].map((region) =>
-            <option as={NavLink} href="/" to="/" value={region} key={region}>{region}</option>
+            <option as={NavLink} href="/open-air-kino" to="/open-air-kino"  value={region} key={region}>{region}</option>
         )
         
         return (
             <form method="post" className={classes.SearchForm}>
                 <select className={classes.SelectField} onChange={this.props.getRegion} name="region">
-                    <option as={NavLink} href="/" to="/"  value="">Show all the regions</option>
+                    <option as={NavLink} href="/open-air-kino" to="/open-air-kino"  value="">Show all the regions</option>
                     {dropdownOption}
                 </select>
 

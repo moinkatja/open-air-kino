@@ -13,7 +13,7 @@ class Favorites extends Component {
                 {
                     this.props.favorites.length > 0 ? (
                         <NavLink to={
-                            { pathname: `/favorites` }}>
+                            { pathname: `/open-air-kino/favorites` }}>
                             <button onClick={this.props.clickedFavBtn} className={classes.FavoritesButton}>
                                 <img src={liked} alt="Favorites" className={classes.LikeImg} /> <strong> {text} </strong>
                             </button>
