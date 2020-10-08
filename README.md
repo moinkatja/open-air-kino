@@ -10,7 +10,7 @@ For this project I used:
 * Create-react-app
 * MongoDB and NodeJS for a database and an API. The backend code is located [here](https://github.com/moinkatja/open-air-node) and is deployed with [Heroku](https://open-air-cinema.herokuapp.com/api/cinemas).
 * Fetch API to get cinemas data
-* Local storage for saving the favorites
+* Session storage for saving the favorites
 * Dynamical dropdown with regions (depending on the data in the database)
 * React Router to correctly show cinemas and favorites depending on the route in the browser address field
 * If the backend is not avaliable, sample data will be shown. 

@@ -23,12 +23,13 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        const getFavs = JSON.parse(localStorage.getItem("favorites")) || "[]";
+        const getFavs = JSON.parse(sessionStorage.getItem("favorites")) || [];
 
         this.setState({
             favorites: getFavs,
             displayedCinemas: this.props.cinemas,
         });
+
 
         (this.props.tab === "cinemas") && (getCinemaDetails(this.props.cinemas, this.props.cinemaId)) ?
             this.setState({
@@ -116,10 +117,10 @@ class Results extends Component {
         });
     }
 
-    //Save favorites to LocalStorage
+    //Save favorites to session session storage
 
     componentDidUpdate() {
-        localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
+        sessionStorage.setItem("favorites", JSON.stringify(this.state.favorites));
     }
 
     render() {
@@ -127,7 +128,8 @@ class Results extends Component {
         let currentPage = this.state.currentPage;
         let cinemasToDisplay; // Main results 
         let cinemaDetails; // Details 
-
+        let favorites = this.state.favorites || [];
+     
         switch (this.props.tab) {
             case "favorites": {
                 cinemasToDisplay = getFavs(this.props.cinemas, this.state.favorites);
@@ -155,7 +157,7 @@ class Results extends Component {
             <Fragment>
                 <section className={classes.Results}>
                     <ControlButtons
-                        favorites={this.state.favorites}
+                        favorites={favorites}
                         cinemas={this.props.cinemas}
                         clickedHomeBtn={this.goHome}
                         clickedFavBtn={this.showFavorites.bind(this)}
@@ -166,7 +168,7 @@ class Results extends Component {
                     {(currentResult.length > 0) ?
                         currentResult.map((cinema, id) =>
                             <NavLink key={id}
-                                to={`/open-air-kino/${this.props.tab}/${cinema.id}`} >
+                                to={`/${this.props.tab}/${cinema.id}`} >
                                 <Result
                                     selectedCinema={activeCinema}
                                     key={id}
@@ -178,7 +180,7 @@ class Results extends Component {
                                     pic={cinema.pic}
                                     clickedResult={this.changeActiveCinema.bind(this)}
                                     clickedLike={() => this.addFavorite.bind(this)(cinema.id)}
-                                    likeBtn={(this.state.favorites).includes(cinema.id) ? "Dislike" : "Like"}
+                                    likeBtn={favorites.includes(cinema.id) ? "Dislike" : "Like"}
                                 />
 
                             </NavLink>
