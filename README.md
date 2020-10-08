@@ -2,6 +2,8 @@
 
 ![Open Air Kino Project](https://i.postimg.cc/9M6NQJW1/open-air-kino1.png)
 
+ [LIVE DEMO](https://moinkatja.github.io/open-air-kino)
+
 This React-App helps to find information about the outdoor cinemas in Germany.
 You can view cinema details, filter cinemas depending on the region, add/remove cinemas to/from favorites.
 
