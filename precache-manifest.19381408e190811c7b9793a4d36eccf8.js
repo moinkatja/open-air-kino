@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5a5777254309f1d2e95a783402199aba",
+    "revision": "db661e84f89c3d97f4661d2f3040c25d",
     "url": "/open-air-kino/index.html"
   },
   {
-    "revision": "66ccbeb07b447471d689",
+    "revision": "9c2822c52c29d9018697",
     "url": "/open-air-kino/static/css/main.bfcaf8cb.chunk.css"
   },
   {
-    "revision": "d31a3a5170dc7215b0b5",
-    "url": "/open-air-kino/static/js/2.70c3240d.chunk.js"
+    "revision": "bb29f15b3689e153a861",
+    "url": "/open-air-kino/static/js/2.df35d2d5.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/open-air-kino/static/js/2.70c3240d.chunk.js.LICENSE.txt"
+    "url": "/open-air-kino/static/js/2.df35d2d5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "66ccbeb07b447471d689",
-    "url": "/open-air-kino/static/js/main.f9fcf855.chunk.js"
+    "revision": "9c2822c52c29d9018697",
+    "url": "/open-air-kino/static/js/main.9223b7b7.chunk.js"
   },
   {
     "revision": "4ccadcbeb22d492e88de",

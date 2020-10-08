@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/open-air-kino/precache-manifest.3c5763d1ec739efebd2d43792c2fb62b.js"
+  "/open-air-kino/precache-manifest.19381408e190811c7b9793a4d36eccf8.js"
 );
 
 self.addEventListener('message', (event) => {
