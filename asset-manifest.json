@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/open-air-kino/static/css/main.bfcaf8cb.chunk.css",
-    "main.js": "/open-air-kino/static/js/main.7011ac0c.chunk.js",
-    "main.js.map": "/open-air-kino/static/js/main.7011ac0c.chunk.js.map",
+    "main.js": "/open-air-kino/static/js/main.27227e64.chunk.js",
+    "main.js.map": "/open-air-kino/static/js/main.27227e64.chunk.js.map",
     "runtime-main.js": "/open-air-kino/static/js/runtime-main.4d1e2005.js",
     "runtime-main.js.map": "/open-air-kino/static/js/runtime-main.4d1e2005.js.map",
     "static/js/2.70c3240d.chunk.js": "/open-air-kino/static/js/2.70c3240d.chunk.js",
     "static/js/2.70c3240d.chunk.js.map": "/open-air-kino/static/js/2.70c3240d.chunk.js.map",
     "index.html": "/open-air-kino/index.html",
-    "precache-manifest.a4fc756c4a1b90f432477f4dde6e5b4f.js": "/open-air-kino/precache-manifest.a4fc756c4a1b90f432477f4dde6e5b4f.js",
+    "precache-manifest.b3606ea0c17d658e50ad7dee12b5292e.js": "/open-air-kino/precache-manifest.b3606ea0c17d658e50ad7dee12b5292e.js",
     "service-worker.js": "/open-air-kino/service-worker.js",
     "static/css/main.bfcaf8cb.chunk.css.map": "/open-air-kino/static/css/main.bfcaf8cb.chunk.css.map",
     "static/js/2.70c3240d.chunk.js.LICENSE.txt": "/open-air-kino/static/js/2.70c3240d.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.4d1e2005.js",
     "static/js/2.70c3240d.chunk.js",
     "static/css/main.bfcaf8cb.chunk.css",
-    "static/js/main.7011ac0c.chunk.js"
+    "static/js/main.27227e64.chunk.js"
   ]
 }
