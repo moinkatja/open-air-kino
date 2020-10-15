@@ -12,11 +12,8 @@ class Favorites extends Component {
             <div className={classes.Favorites} >
                 {
                     this.props.favorites.length > 0 ? (
-                        <NavLink to={
-                            { pathname: `/favorites` }}>
-                            <button onClick={this.props.clickedFavBtn} className={classes.FavoritesButton}>
-                                <img src={liked} alt="Favorites" className={classes.LikeImg} /> <strong> {text} </strong>
-                            </button>
+                        <NavLink to={{ pathname: `/favorites` }}>
+                            <img src={liked} alt="Favorites" className={[classes.LikeImg, classes.FavoritesButton].join(" ")} onClick={this.props.clickedFavBtn} /> <strong> {text} </strong>
                         </NavLink>
                     ) : (<button className={classes.FavoritesButton} disabled>
                         <img src={notliked} alt="Favorites empty" className={classes.LikeImg} /> <strong> {text} </strong>

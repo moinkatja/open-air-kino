@@ -11,9 +11,9 @@
     text-align: left;
     width: 100%;
     margin-top: -.5rem; 
-    margin-right: 1rem;
     margin-bottom: 0;
     color: rgb(103, 73, 116);
+    height: 2.5rem;
 }
 
 @media (max-width: 800px) {

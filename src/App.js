@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <Fragment>
         <Modal
-          show={this.state.error ? true : false}
+          show={!!this.state.error}
           errorMessage={this.state.error}
           modalClosed={this.clearError}
         />

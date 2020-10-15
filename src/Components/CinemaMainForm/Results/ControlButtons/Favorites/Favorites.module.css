@@ -1,7 +1,7 @@
 .Favorites {
   margin-left: .3rem;
   width: 100px;
-  margin-top: -.7rem;
+  margin-top: -.6rem;
   min-width: 40px;
 }
 
@@ -9,6 +9,11 @@
   color: rgb(5, 114, 90);
   font-size: 1.3rem;
   padding-left: 5px;
+}
+
+.Favorites button {
+  margin: 0;
+  padding: 0;
 }
 
 .LikeImg {
@@ -36,7 +41,6 @@
   }
 
   .FavoritesButton {
-    width: 70px;
     opacity: 0.9;
   }
 }
