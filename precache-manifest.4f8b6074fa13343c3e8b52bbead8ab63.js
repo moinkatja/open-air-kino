@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a5417fb60ff90e427f33ac81eef059f4",
+    "revision": "61a26eba63a2c2e69f0adc0fef03da40",
     "url": "/open-air-kino/index.html"
   },
   {
-    "revision": "3704334ccdf103979d90",
-    "url": "/open-air-kino/static/css/main.bfcaf8cb.chunk.css"
+    "revision": "a895237faf4f45ea64f4",
+    "url": "/open-air-kino/static/css/main.93b6a74b.chunk.css"
   },
   {
-    "revision": "d31a3a5170dc7215b0b5",
-    "url": "/open-air-kino/static/js/2.70c3240d.chunk.js"
+    "revision": "e329a6e8a8deeb799abd",
+    "url": "/open-air-kino/static/js/2.e4d3624b.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/open-air-kino/static/js/2.70c3240d.chunk.js.LICENSE.txt"
+    "url": "/open-air-kino/static/js/2.e4d3624b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3704334ccdf103979d90",
-    "url": "/open-air-kino/static/js/main.27227e64.chunk.js"
+    "revision": "a895237faf4f45ea64f4",
+    "url": "/open-air-kino/static/js/main.eaca1aac.chunk.js"
   },
   {
     "revision": "4ccadcbeb22d492e88de",
