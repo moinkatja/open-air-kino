@@ -17,7 +17,6 @@ class SearchForm extends Component {
                     <option as={NavLink} href="/" to="/"  value="">Show all the regions</option>
                     {dropdownOption}
                 </select>
-
             </form>
         )
     }
