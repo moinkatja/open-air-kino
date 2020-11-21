@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import Router from "../../Router/Router";
 import MainForm from "../CinemaMainForm";
 import Result from "./Result/Result";
+import SAMPLE_ARRAY from "../../../sampledata";
 
 let container = null;
 beforeEach(() => {
@@ -18,14 +19,11 @@ afterEach(() => {
     container = null;
 });
 
+const cinemas = SAMPLE_ARRAY;
+
 test('Results render correctly', () => {
     const loading = false;
     const favorites = [1];
-    const cinemas = [
-        { "id": "0", "name": "Open-Air-Schanzenkino", "region": "Hamburg", "postcode": 20357, "city": "Hamburg", "street": "Sternschanze 1A", "pic": "https://i.postimg.cc/zvcsTqLQ/kino2.jpg" },
-        { "id": "1", "name": "Open Air Kino in Dornumersiel", "region": "Niedersachsen", "postcode": 26553, "city": "Dornumersiel", "street": "Seeparkbühne", "pic": "https://i.postimg.cc/MTWJSP29/kino1.jpg" },
-        { "id": "2", "name": "Biesdorfer Parkbühne", "region": "Berlin", "postcode": 12683, "city": "Berlin", "street": "Nordpromenade 5", "pic": "https://i.postimg.cc/j22VWDjN/kino3.jpg" },
-    ]
     const tree = renderer.create(
         <Router>
             <MainForm loading={loading}>
@@ -34,3 +32,48 @@ test('Results render correctly', () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
 });
+
+for (let i = 0; i < cinemas.length; i++) {
+    test(`cinemas[${i}] should have properties id, name, region, postcode, city`, () => {
+        expect(cinemas[i]).toHaveProperty("id");
+        expect(cinemas[i]).toHaveProperty("name");
+        expect(cinemas[i]).toHaveProperty("region");
+        expect(cinemas[i]).toHaveProperty("postcode");
+        expect(cinemas[i]).toHaveProperty("city");
+    })
+}
+
+test("Spying using original implementation", () => {
+    const cinema = {
+        name: n => `Cinema name: ${n}`,
+    };
+    const spy = jest.spyOn(cinema, "name");
+    expect(cinema.name("Open-Air-Schanzenkino")).toBe("Cinema name: Open-Air-Schanzenkino");
+    expect(spy).toHaveBeenCalledWith("Open-Air-Schanzenkino");
+})
+
+test("Cinemas return Biesdorfer Parkbühne last", () => {
+    const cinema1 = cinemas[0];
+    const cinema2 = cinemas[1];
+    const cinema3 = cinemas[2];
+
+    const cinema = jest.fn(currentCinema => currentCinema.name);
+    cinema(cinema1);
+    cinema(cinema2);
+    cinema(cinema3);
+
+    expect(cinema).toHaveLastReturnedWith("Biesdorfer Parkbühne");
+})
+
+test("Cinema data has Freiluftkino Insel and matches as an object", () => {
+    const testCinema = {
+        id: "3",
+        name: "Freiluftkino Insel",
+        region: "Berlin",
+        postcode: 10247,
+        city: "Berlin",
+        street: "Revaler Str. 99",
+        pic: "https://i.postimg.cc/C1MpTztL/cinema-442977-640.jpg",
+    }
+    expect(cinemas[3]).toMatchObject(testCinema);
+})
